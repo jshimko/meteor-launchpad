@@ -5,7 +5,7 @@
 
 Add the following to a `Dockerfile` in the root of your app:
 
-```sh
+```Dockerfile
 FROM jshimko/meteor-launchpad:latest
 ```
 
@@ -33,7 +33,7 @@ docker run -d \
 
 You can optionally avoid downloading Meteor every time when building regularly in development.  Add the following to your Dockerfile instead...
 
-```sh
+```Dockerfile
 FROM jshimko/meteor-launchpad:devbuild
 ```
 
