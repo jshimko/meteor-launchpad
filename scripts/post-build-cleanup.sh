@@ -9,8 +9,8 @@ rm -rf /usr/share/{doc,doc-base,man,locale,zoneinfo}
 # Clean out package management dirs
 rm -rf /var/lib/{cache,log}
 
-# remove source
-rm -rf $APP_SOURCE_DIR
+# remove source build files
+rm -rf $APP_SOURCE_DIR/node_modules
 
 # remove meteor
 rm -rf /usr/local/bin/meteor
@@ -24,11 +24,6 @@ rm -rf /tmp/*
 npm cache clean
 rm -rf /opt/nodejs/bin/npm
 rm -rf /opt/nodejs/lib/node_modules/npm/
-
-# locale cleanup
-cp -R /usr/share/locale/en\@* /tmp/
-rm -rf /usr/share/locale/*
-mv /tmp/en\@* /usr/share/locale/
 
 # remove os dependencies
 apt-get -y purge ca-certificates curl git bzip2
