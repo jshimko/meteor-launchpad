@@ -1,5 +1,5 @@
 [![Circle CI](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master.svg?style=svg)](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master)
-## Meteor Launchpad - Docker Container for Meteor Apps
+## Meteor Launchpad - Base Docker Image for Meteor Apps
 
 ### Build
 
