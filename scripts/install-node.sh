@@ -2,12 +2,9 @@
 
 set -e
 
-: ${NODE_VERSION:=0.10.46}
-: ${NODE_ARCH:=x64}
-
 printf "\n[-] Installing Node ${NODE_VERSION}...\n\n"
 
-NODE_DIST=node-v${NODE_VERSION}-linux-${NODE_ARCH}
+NODE_DIST=node-v${NODE_VERSION}-linux-x64
 
 cd /tmp
 curl -O -L http://nodejs.org/dist/v${NODE_VERSION}/${NODE_DIST}.tar.gz
