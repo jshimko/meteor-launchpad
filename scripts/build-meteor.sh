@@ -19,3 +19,4 @@ cd $APP_BUNDLE_DIR/bundle/programs/server/
 meteor npm install --production
 
 mv $APP_BUNDLE_DIR/bundle $APP_DIR
+rm $APP_BUNDLE_DIR
