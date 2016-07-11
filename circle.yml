@@ -1,0 +1,26 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+  override:
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker build -t jshimko/meteor-launchpad:base .
+    - docker build -f prod.dockerfile -t jshimko/meteor-launchpad:latest .
+    - docker build -f dev.dockerfile -t jshimko/meteor-launchpad:devbuild .
+    - mkdir -p ~/docker; docker save jshimko/meteor-launchpad:base > ~/docker/image.tar
+
+test:
+  override:
+    - echo "No tests yet. Skipping..."
+
+deployment:
+  release:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push jshimko/meteor-launchpad:base
+      - docker push jshimko/meteor-launchpad:devbuild
+      - docker push jshimko/meteor-launchpad:latest
