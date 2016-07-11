@@ -37,7 +37,7 @@ You can optionally avoid downloading Meteor every time when building regularly i
 FROM jshimko/meteor-launchpad:devbuild
 ```
 
-This makes a much larger image, so it's not recommended for your final production build, but the first build will install Meteor and every subsequent build will be able to skip that step and just build the app.
+This isn't recommended for your final production build because it creates a much larger image, but it's a bit of a time saver when you're building often in development.  The first build you run will download/install Meteor and then every subsequent build will be able to skip that step and just build the app.
 
 ### Docker Compose
 
@@ -52,8 +52,8 @@ app:
     - mongo
   environment:
     - ROOT_URL=http://example.com
-    - MONGO_URL=mongodb://mongo:27017/meteor
-    - MONGO_OPLOG_URL=mongodb://oplog_url
+    - MONGO_URL=mongodb://mongo_url:27017/meteor
+    - MONGO_OPLOG_URL=mongodb://oplog_url:27017/meteor
     - MAIL_URL=smtp://mail_url.com
 
 mongo:
