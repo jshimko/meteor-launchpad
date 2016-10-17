@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
-ENV NODE_VERSION "4.5.0"
+ENV NODE_VERSION "4.6.0"
 
 # build directories
 ENV APP_SOURCE_DIR "/opt/meteor/src"
