@@ -29,7 +29,7 @@ docker run -d \
   yourname/app
 ```
 
-### Development Builds
+## Development Builds
 
 You can optionally avoid downloading Meteor every time when building regularly in development.  Add the following to your Dockerfile instead...
 
@@ -39,7 +39,9 @@ FROM jshimko/meteor-launchpad:devbuild
 
 This isn't recommended for your final production build because it creates a much larger image, but it's a bit of a time saver when you're building often in development.  The first build you run will download/install Meteor and then every subsequent build will be able to skip that step and just build the app.
 
-### Docker Compose
+## Docker Compose
+
+Add a `docker-compose.yml` to the root of your project with the following content and edit the app image name to match your build name.  Everything else should work as-is.
 
 ```yaml
 # docker-compose.yml
@@ -58,7 +60,7 @@ mongo:
   image: mongo:latest --storageEngine=wiredTiger
 ```
 
-And then start the containers with...
+And then start the app and database containers with...
 
 ```sh
 docker-compose up -d
