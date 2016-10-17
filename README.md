@@ -52,9 +52,7 @@ app:
     - mongo
   environment:
     - ROOT_URL=http://example.com
-    - MONGO_URL=mongodb://mongo_url:27017/meteor
-    - MONGO_OPLOG_URL=mongodb://oplog_url:27017/meteor
-    - MAIL_URL=smtp://mail_url.com
+    - MONGO_URL=mongodb://mongo:27017/meteor
 
 mongo:
   image: mongo:latest --storageEngine=wiredTiger
