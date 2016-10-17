@@ -10,6 +10,7 @@ rm -rf /usr/share/{doc,doc-base,man,locale,zoneinfo}
 rm -rf /var/lib/{cache,log}
 
 # remove source build files
+rm -rf $APP_SOURCE_DIR/.meteor/local
 rm -rf $APP_SOURCE_DIR/node_modules
 
 # remove meteor
