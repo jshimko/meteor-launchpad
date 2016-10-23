@@ -17,7 +17,10 @@ RUN chmod -R +x $BUILD_SCRIPTS_DIR
 RUN cd $BUILD_SCRIPTS_DIR && \
 		bash $BUILD_SCRIPTS_DIR/install-deps.sh && \
 		bash $BUILD_SCRIPTS_DIR/install-node.sh && \
+		bash $BUILD_SCRIPTS_DIR/setup-user.sh && \
 		bash $BUILD_SCRIPTS_DIR/post-install-cleanup.sh
+
+USER nodejs
 
 EXPOSE 80
 
