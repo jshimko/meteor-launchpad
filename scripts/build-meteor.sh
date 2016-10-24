@@ -18,5 +18,5 @@ meteor build --directory $APP_BUNDLE_DIR
 cd $APP_BUNDLE_DIR/bundle/programs/server/
 meteor npm install --production --unsafe-perm
 
-mv $APP_BUNDLE_DIR/bundle $APP_DIR
-rm -rf $APP_BUNDLE_DIR
+# put the entrypoint script in WORKDIR
+mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh

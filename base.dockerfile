@@ -6,7 +6,6 @@ ENV NODE_VERSION "4.6.0"
 # build directories
 ENV APP_SOURCE_DIR "/opt/meteor/src"
 ENV APP_BUNDLE_DIR "/opt/meteor/dist"
-ENV APP_DIR "/opt/app"
 ENV BUILD_SCRIPTS_DIR "/opt/build_scripts"
 
 # Add entrypoint and build scripts
@@ -19,8 +18,11 @@ RUN cd $BUILD_SCRIPTS_DIR && \
 		bash $BUILD_SCRIPTS_DIR/install-node.sh && \
 		bash $BUILD_SCRIPTS_DIR/post-install-cleanup.sh
 
+ENV PORT 80
 EXPOSE 80
 
+WORKDIR $APP_BUNDLE_DIR/bundle
+
 # start the app
-ENTRYPOINT bash $BUILD_SCRIPTS_DIR/entrypoint.sh
-CMD []
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["node", "main.js"]

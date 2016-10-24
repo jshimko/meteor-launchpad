@@ -11,8 +11,7 @@ if [[ $DELAY ]]; then
   sleep $DELAY
 fi
 
-cd $APP_DIR
 
 # Start app
 echo "=> Starting app on port $PORT..."
-node ./main.js
+exec "$@"
