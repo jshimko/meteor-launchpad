@@ -1,5 +1,5 @@
 [![Circle CI](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master.svg?style=svg)](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master)
-## Meteor Launchpad - Base Docker Image for Meteor Apps
+# Meteor Launchpad - Base Docker Image for Meteor Apps
 
 ### Build
 
@@ -28,6 +28,22 @@ docker run -d \
   -p 80:80 \
   yourname/app
 ```
+
+### Custom Build Options
+
+Meteor Launchpad supports a few custom build options by using a config file in the root of your app.  The currently supported options are to add PhantomJS or MongoDB to your build.  To install either of them, create a `launchpad.conf` in the root of your app and add either of the following values.
+
+```sh
+# launchpad.conf
+
+INSTALL_PHANTOMJS=true
+INSTALL_MONGO=true
+```
+
+If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
+
+Note that having Mongo in the same container as your app is just for convenience while testing/developing.  In production, you should use a separate Mongo deployment or at least a separate Mongo container.
+
 
 ## Development Builds
 
