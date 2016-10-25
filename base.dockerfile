@@ -3,6 +3,15 @@ MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
 ENV NODE_VERSION 4.6.1
 
+# Optionally Install MongoDB
+ENV INSTALL_MONGO false
+ENV MONGO_VERSION 3.2.10
+ENV MONGO_MAJOR 3.2
+
+# Optionally Install PhantomJS
+ENV INSTALL_PHANTOMJS false
+ENV PHANTOM_VERSION 2.1.1
+
 # build directories
 ENV APP_SOURCE_DIR /opt/meteor/src
 ENV APP_BUNDLE_DIR /opt/meteor/dist
