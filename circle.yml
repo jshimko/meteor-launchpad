@@ -3,14 +3,10 @@ machine:
     - docker
 
 dependencies:
-  cache_directories:
-    - "~/docker"
   override:
-    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t jshimko/meteor-launchpad:base .
     - docker build -f prod.dockerfile -t jshimko/meteor-launchpad:latest .
     - docker build -f dev.dockerfile -t jshimko/meteor-launchpad:devbuild .
-    - mkdir -p ~/docker; docker save jshimko/meteor-launchpad:base > ~/docker/image.tar
 
 test:
   override:
