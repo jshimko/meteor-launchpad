@@ -10,7 +10,7 @@ ENV BUILD_SCRIPTS_DIR /opt/build_scripts
 
 # Add entrypoint and build scripts
 COPY scripts $BUILD_SCRIPTS_DIR
-RUN chmod -R +x $BUILD_SCRIPTS_DIR
+RUN chmod -R 770 $BUILD_SCRIPTS_DIR
 
 # install base dependencies, build app, cleanup
 RUN cd $BUILD_SCRIPTS_DIR && \
