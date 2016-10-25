@@ -27,6 +27,7 @@ RUN cd $BUILD_SCRIPTS_DIR && \
 		bash $BUILD_SCRIPTS_DIR/install-node.sh && \
 		bash $BUILD_SCRIPTS_DIR/post-install-cleanup.sh
 
+ENV ROOT_URL http://localhost
 ENV PORT 80
 EXPOSE 80
 
