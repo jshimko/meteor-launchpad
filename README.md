@@ -17,7 +17,8 @@ docker build -t yourname/app .
 
 ### Run
 
-Now you can run your container with...
+Now you can run your container with the following command...
+(note that the app listens on port 3000 because it is run by a non-root user for [security reasons](https://github.com/nodejs/docker-node/issues/1) and [non-root users can't run processes on port 80](http://stackoverflow.com/questions/16573668/best-practices-when-running-node-js-with-port-80-ubuntu-linode))
 
 ```sh
 docker run -d \
@@ -25,7 +26,7 @@ docker run -d \
   -e MONGO_URL=mongodb://url \
   -e MONGO_OPLOG_URL=mongodb://oplog_url \
   -e MAIL_URL=smtp://mail_url.com \
-  -p 80:80 \
+  -p 80:3000 \
   yourname/app
 ```
 
