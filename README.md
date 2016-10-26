@@ -66,7 +66,7 @@ Add a `docker-compose.yml` to the root of your project with the following conten
 app:
   image: yourname/app
   ports:
-    - "80:80"
+    - "80:3000"
   links:
     - mongo
   environment:
