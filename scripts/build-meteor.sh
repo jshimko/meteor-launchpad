@@ -14,7 +14,7 @@ meteor npm install --unsafe-perm
 
 # build the source
 mkdir -p $APP_BUNDLE_DIR
-meteor build --directory $APP_BUNDLE_DIR
+meteor build --unsafe-perm --directory $APP_BUNDLE_DIR
 cd $APP_BUNDLE_DIR/bundle/programs/server/
 meteor npm install --production --unsafe-perm
 
