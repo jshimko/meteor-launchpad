@@ -2,7 +2,7 @@
 
 set -e
 
-if [ "$DEV_BUILD" = "true" ]; then
+if [ "$DEV_BUILD" = true ]; then
   curl https://install.meteor.com/ | sh
 else
   # download installer script
