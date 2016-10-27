@@ -1,6 +1,9 @@
 FROM debian:jessie
 MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
+RUN groupadd -r node && useradd -m -g node node
+
+ENV METEOR_VERSION 1.4.2
 ENV NODE_VERSION 4.6.1
 ENV GOSU_VERSION 1.9
 
@@ -17,8 +20,6 @@ ENV PHANTOM_VERSION 2.1.1
 ENV APP_SOURCE_DIR /opt/meteor/src
 ENV APP_BUNDLE_DIR /opt/meteor/dist
 ENV BUILD_SCRIPTS_DIR /opt/build_scripts
-
-RUN groupadd -r node && useradd -r -g node node
 
 # Add entrypoint and build scripts
 COPY scripts $BUILD_SCRIPTS_DIR
