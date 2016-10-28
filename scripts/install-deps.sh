@@ -4,9 +4,9 @@ set -e
 
 printf "\n[-] Installing base OS dependencies...\n\n"
 
-apt-get update -qq -y
+apt-get update -y
 
-apt-get install -qq -y --no-install-recommends curl ca-certificates bzip2 build-essential numactl python wget
+apt-get install -y --no-install-recommends curl ca-certificates bzip2 build-essential numactl python wget
 
 rm -rf /var/lib/apt/lists/*
 
