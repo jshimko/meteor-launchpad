@@ -7,16 +7,19 @@ set -e
 
 printf "\n[-] Building Meteor application...\n\n"
 
+# Set owner and permissions of source dir
 chown -R node $APP_SOURCE_DIR
 chmod -R 770 $APP_SOURCE_DIR
+
 # Install app deps
 gosu node meteor npm install
 
-# build the source
+# create bundle dir and set owner and permissions
 mkdir -p $APP_BUNDLE_DIR
 chown -R node $APP_BUNDLE_DIR
-# fix permissions
 chmod -R 770 $APP_BUNDLE_DIR
+
+# build meteor bundle
 gosu node meteor build --directory $APP_BUNDLE_DIR
 cd $APP_BUNDLE_DIR/bundle/programs/server/
 gosu node meteor npm install --production
