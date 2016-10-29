@@ -7,7 +7,7 @@ printf "\n[-] Installing base OS dependencies...\n\n"
 apt-get update -y
 
 apt-get install -y --no-install-recommends curl ca-certificates bzip2 build-essential numactl python wget git
-
+git --version
 rm -rf /var/lib/apt/lists/*
 
 dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
