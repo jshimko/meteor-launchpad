@@ -6,11 +6,13 @@
 set -e
 
 printf "\n[-] Building Meteor application [Test-2]...\n\n"
+COPIED_APP_PATH=/copied-app
+cp -R $APP_SOURCE_DIR $COPIED_APP_PATH
 
-cd $APP_SOURCE_DIR
+cd $COPIED_APP_PATH
 
-chown -R node $APP_SOURCE_DIR
-chmod -R 777 $APP_SOURCE_DIR
+chown -R node $COPIED_APP_PATH
+chmod -R 777 $COPIED_APP_PATH
 # Install app deps
 gosu node meteor npm install
 
