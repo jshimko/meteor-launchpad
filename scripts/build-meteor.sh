@@ -17,6 +17,8 @@ gosu node meteor npm install
 # build the source
 mkdir -p $APP_BUNDLE_DIR
 chown -R node $APP_BUNDLE_DIR
+# fix permissions
+chmod -R 770 $APP_BUNDLE_DIR
 gosu node meteor build --directory $APP_BUNDLE_DIR
 cd $APP_BUNDLE_DIR/bundle/programs/server/
 gosu node meteor npm install --production
