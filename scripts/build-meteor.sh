@@ -27,3 +27,6 @@ gosu node meteor npm install --production
 
 # put the entrypoint script in WORKDIR
 mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
+
+# clean up
+rm -rf $COPIED_APP_PATH
