@@ -1,4 +1,4 @@
-FROM jank1310/meteor-launchpad:base
+FROM jshimko/meteor-launchpad:base
 MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
 # copy the app to the container
