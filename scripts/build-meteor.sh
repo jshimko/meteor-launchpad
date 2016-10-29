@@ -5,7 +5,7 @@
 #
 set -e
 
-printf "\n[-] Building Meteor application [Test-2]...\n\n"
+printf "\n[-] Building Meteor application...\n\n"
 
 chown -R node $APP_SOURCE_DIR
 chmod -R 770 $APP_SOURCE_DIR
