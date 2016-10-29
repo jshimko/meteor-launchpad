@@ -5,12 +5,12 @@
 #
 set -e
 
-printf "\n[-] Building Meteor application...\n\n"
+printf "\n[-] Building Meteor application [Test-2]...\n\n"
 
 cd $APP_SOURCE_DIR
 
 chown -R node $APP_SOURCE_DIR
-chmod -R 770 $APP_SOURCE_DIR
+chmod -R 777 $APP_SOURCE_DIR
 # Install app deps
 gosu node meteor npm install
 
