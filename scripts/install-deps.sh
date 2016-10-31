@@ -8,8 +8,6 @@ apt-get update -y
 
 apt-get install -y --no-install-recommends curl ca-certificates bzip2 build-essential numactl python wget
 
-rm -rf /var/lib/apt/lists/*
-
 dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
 
 wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"
