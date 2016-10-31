@@ -2,9 +2,6 @@
 
 set -e
 
-# set default port if is isn't set
-export PORT=${PORT:-80}
-
 # Set a delay to wait to start meteor container
 if [[ $DELAY ]]; then
   echo "Delaying startup for $DELAY seconds"
@@ -30,7 +27,7 @@ fi
 
 # allow the container to be started with `--user`
 if [ "$1" = "node" -a "$(id -u)" = "0" ]; then
-  chown -R node $APP_BUNDLE_DIR
+  chown -R node:node $APP_BUNDLE_DIR
 	exec gosu node "$BASH_SOURCE" "$@"
 fi
 
