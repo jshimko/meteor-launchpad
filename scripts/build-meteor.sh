@@ -8,7 +8,7 @@ set -e
 cd $APP_SOURCE_DIR
 
 # Install app deps
-printf "\n[-] Running npm install...\n\n"
+printf "\n[-] Running npm install in app directory...\n\n"
 meteor npm install
 
 # build the bundle
