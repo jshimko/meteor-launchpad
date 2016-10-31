@@ -4,9 +4,7 @@ machine:
 
 dependencies:
   override:
-    - docker build -t jshimko/meteor-launchpad:base .
-    - docker build -f prod.dockerfile -t jshimko/meteor-launchpad:latest .
-    - docker build -f dev.dockerfile -t jshimko/meteor-launchpad:devbuild .
+    - ./build.sh
 
 test:
   override:
