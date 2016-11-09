@@ -39,6 +39,7 @@ Meteor Launchpad supports a few custom build options by using a config file in t
 
 INSTALL_PHANTOMJS=true
 INSTALL_MONGO=true
+INSTALL_GRAPHICSMAGICK=true
 ```
 
 If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
