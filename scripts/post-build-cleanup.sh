@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-printf "\n[-] Performing final cleanup...\n"
+printf "\n[-] Performing final cleanup...\n\n"
 
 # get out of the src dir, so we can delete it
 cd $APP_BUNDLE_DIR
