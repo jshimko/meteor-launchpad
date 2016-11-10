@@ -1,4 +1,11 @@
 
+## v1.1.0
+
+- update meteor build script to use `METEOR_ALLOW_SUPERUSER` in the build.  Discontinues support of Meteor 1.4.2.  Please update to Meteor 1.4.2.1 if you are currently on 1.4.2
+- allow optional install of Graphicsmagick using launchpad.conf - Thanks @un1x86! (https://github.com/jshimko/meteor-launchpad/pull/20)
+- update gosu to 1.10
+
+
 ## v1.0.0
 
 [Release](https://github.com/jshimko/meteor-launchpad/tree/v1.0.0)
