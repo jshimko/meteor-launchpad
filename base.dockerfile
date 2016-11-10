@@ -15,6 +15,9 @@ ENV MONGO_MAJOR 3.2
 ENV INSTALL_PHANTOMJS false
 ENV PHANTOM_VERSION 2.1.1
 
+# Optionally Install Graphicsmagick
+ENV INSTALL_GRAPHICSMAGICK false
+
 # build directories
 ENV APP_SOURCE_DIR /opt/meteor/src
 ENV APP_BUNDLE_DIR /opt/meteor/dist
