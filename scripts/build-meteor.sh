@@ -5,6 +5,10 @@
 #
 set -e
 
+# Fix permissions warning in Meteor >=1.4.2.1 without breaking
+# earlier versions of Meteor with --unsafe-perm or --allow-superuser
+export METEOR_ALLOW_SUPERUSER=true
+
 cd $APP_SOURCE_DIR
 
 # Install app deps
@@ -14,7 +18,7 @@ meteor npm install
 # build the bundle
 printf "\n[-] Building Meteor application...\n\n"
 mkdir -p $APP_BUNDLE_DIR
-meteor build --unsafe-perm --directory $APP_BUNDLE_DIR
+meteor build --directory $APP_BUNDLE_DIR
 
 # run npm install in bundle
 printf "\n[-] Running npm install in the server bundle...\n\n"
