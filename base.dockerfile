@@ -33,8 +33,11 @@ RUN cd $BUILD_SCRIPTS_DIR && \
 		bash $BUILD_SCRIPTS_DIR/install-node.sh && \
 		bash $BUILD_SCRIPTS_DIR/post-install-cleanup.sh
 
+# Default values for Meteor environment variables
 ENV ROOT_URL http://localhost
+ENV MONGO_URL mongodb://127.0.0.1:27017/meteor
 ENV PORT 3000
+
 EXPOSE 3000
 
 WORKDIR $APP_BUNDLE_DIR/bundle
