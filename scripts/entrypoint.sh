@@ -2,12 +2,6 @@
 
 set -e
 
-# Set a delay to wait to start meteor container
-if [[ $DELAY ]]; then
-  echo "Delaying startup for $DELAY seconds"
-  sleep $DELAY
-fi
-
 # try to start local MongoDB if no external MONGO_URL was set
 if [[ "${MONGO_URL}" == *"127.0.0.1"* ]]; then
   if hash mongod 2>/dev/null; then
@@ -19,6 +13,12 @@ if [[ "${MONGO_URL}" == *"127.0.0.1"* ]]; then
     echo "Rebuild with INSTALL_MONGO=true in your launchpad.conf or supply a MONGO_URL environment variable."
     exit 1
   fi
+fi
+
+# Set a delay to wait to start the Node process
+if [[ $STARTUP_DELAY ]]; then
+  echo "Delaying startup for $STARTUP_DELAY seconds..."
+  sleep $STARTUP_DELAY
 fi
 
 if [ "${1:0:1}" = '-' ]; then
