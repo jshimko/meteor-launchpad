@@ -30,6 +30,19 @@ docker run -d \
   yourname/app
 ```
 
+#### Delay startup
+
+If you need to force a delay in the startup of the Node process (for example, to wait for a database to be ready), you can set the `STARTUP_DELAY` environment variable to any number of seconds.  For example, to delay starting the app by 10 seconds, you would do this:
+
+```sh
+docker run -d \
+  -e ROOT_URL=http://example.com \
+  -e MONGO_URL=mongodb://url \
+  -e STARTUP_DELAY=10 \
+  -p 80:3000 \
+  yourname/app
+```
+
 ### Custom Build Options
 
 Meteor Launchpad supports a few custom build options by using a config file in the root of your app.  The currently supported options are to add PhantomJS or MongoDB to your build.  To install either of them, create a `launchpad.conf` in the root of your app and add either of the following values.

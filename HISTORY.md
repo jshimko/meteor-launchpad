@@ -1,8 +1,16 @@
 
+## v1.1.1
+
+- If internal Mongo is used, send it to the background (`--fork` required a logfile that would just keep getting larger indefinitely)
+- Add default `MONGO_URL` for internal mongod (fixes #22)
+- Move `$STARTUP_DELAY` after the mongod startup and add details to the readme
+- Send the `meteor build` warning about building as root to /dev/null (since some people have assumed this is an error and the build can take a long time in larger apps).  The warning is irrelevant in this case because all permissions are updated after the build and the app is then run by a non-root user.
+
+
 ## v1.1.0
 
 - update meteor build script to use `METEOR_ALLOW_SUPERUSER` in the build.  Discontinues support of Meteor 1.4.2.  Please update to Meteor 1.4.2.1 if you are currently on 1.4.2
-- allow optional install of Graphicsmagick using launchpad.conf - Thanks @un1x86! (https://github.com/jshimko/meteor-launchpad/pull/20)
+- allow optional install of Graphicsmagick using launchpad.conf - Thanks @un1x86! (#20)
 - update gosu to 1.10
 
 
