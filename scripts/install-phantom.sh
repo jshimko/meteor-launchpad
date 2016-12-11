@@ -2,11 +2,6 @@
 
 set -e
 
-if [ -f $APP_SOURCE_DIR/launchpad.conf ]; then
-  source <(grep INSTALL_PHANTOMJS $APP_SOURCE_DIR/launchpad.conf)
-  source <(grep PHANTOM_VERSION $APP_SOURCE_DIR/launchpad.conf)
-fi
-
 if [ "$INSTALL_PHANTOMJS" = true ]; then
   printf "\n[-] Installing Phantom.js...\n\n"
 

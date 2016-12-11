@@ -7,16 +7,16 @@ ARG NODE_VERSION=4.6.2
 ENV GOSU_VERSION 1.10
 
 # Optionally Install MongoDB
-ENV INSTALL_MONGO false
+ARG INSTALL_MONGO=false
 ARG MONGO_VERSION=3.2.10
 ARG MONGO_MAJOR=3.2
 
 # Optionally Install PhantomJS
-ENV INSTALL_PHANTOMJS false
+ARG INSTALL_PHANTOMJS=false
 ARG PHANTOM_VERSION=2.1.1
 
 # Optionally Install Graphicsmagick
-ENV INSTALL_GRAPHICSMAGICK false
+ARG INSTALL_GRAPHICSMAGICK=false
 
 # build directories
 ENV APP_SOURCE_DIR /opt/meteor/src

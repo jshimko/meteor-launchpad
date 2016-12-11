@@ -2,10 +2,6 @@
 
 set -e
 
-if [ -f $APP_SOURCE_DIR/launchpad.conf ]; then
-  source <(grep INSTALL_GRAPHICSMAGICK $APP_SOURCE_DIR/launchpad.conf)
-fi
-
 if [ "$INSTALL_GRAPHICSMAGICK" = true ]; then
   printf "\n[-] Installing Graphicsmagick...\n\n"
 
