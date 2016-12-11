@@ -45,15 +45,37 @@ docker run -d \
 
 ### Custom Build Options
 
-Meteor Launchpad supports a few custom build options by using a config file in the root of your app.  The currently supported options are to add PhantomJS or MongoDB to your build.  To install either of them, create a `launchpad.conf` in the root of your app and add either of the following values.
+Meteor Launchpad supports a few custom build options by adding build arguments ar buildtime. Since this effectively
+changes the build image for base, you will need to prebuild your own meteorlaunch images.
 
 ```sh
-# launchpad.conf
-
-INSTALL_PHANTOMJS=true
-INSTALL_MONGO=true
-INSTALL_GRAPHICSMAGICK=true
+docker build -t jshimko/meteor-launchpad:base \
+--build-arg NODE_VERSION=4.6.2 \
+--build-arg INSTALL_MONGO=false \
+--build-arg MONGO_VERSION=3.2.10 \
+--build-arg MONGO_MAJOR=3.2 \
+--build-arg INSTALL_PHANTOMJS=false \
+--build-arg PHANTOM_VERSION=2.1.1 \
+--build-arg INSTALL_GRAPHICSMAGICK=false \
+. && \
+sudo docker build --file ./prod.dockerfile --tag=jshimko/meteor-launchpad:latest .
 ```
+
+Then in your Dockerfile of your app, specify your specific build.
+```Dockerfile
+FROM jshimko/meteor-launchpad:latest
+```
+
+Then you can build the image with
+```sh
+sudo docker build --tag=yourname/app .
+```
+
+***Note:*** Since the above images can vary if you input custom build arguments, it
+will be necessary that the custom `jshimko/meteor-launchpad:base` be available locally for docker to pull from,
+otherwise it will pull the `jshimko/meteor-launchpad:base` remote image from the docker hub which will
+only have the default build variables.
+
 
 If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
 

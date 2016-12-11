@@ -3,20 +3,20 @@ MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
 RUN groupadd -r node && useradd -m -g node node
 
-ENV NODE_VERSION 4.6.2
-ENV GOSU_VERSION 1.10
+ARG NODE_VERSION=4.6.2
+ARG GOSU_VERSION=1.10
 
 # Optionally Install MongoDB
-ENV INSTALL_MONGO false
-ENV MONGO_VERSION 3.2.10
-ENV MONGO_MAJOR 3.2
+ARG INSTALL_MONGO=false
+ARG MONGO_VERSION=3.2.10
+ARG MONGO_MAJOR=3.2
 
 # Optionally Install PhantomJS
-ENV INSTALL_PHANTOMJS false
-ENV PHANTOM_VERSION 2.1.1
+ARG INSTALL_PHANTOMJS=false
+ARG PHANTOM_VERSION=2.1.1
 
 # Optionally Install Graphicsmagick
-ENV INSTALL_GRAPHICSMAGICK false
+ARG INSTALL_GRAPHICSMAGICK=false
 
 # build directories
 ENV APP_SOURCE_DIR /opt/meteor/src

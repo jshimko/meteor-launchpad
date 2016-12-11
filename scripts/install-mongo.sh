@@ -2,10 +2,6 @@
 
 set -e
 
-if [ -f $APP_SOURCE_DIR/launchpad.conf ]; then
-  source <(grep INSTALL_MONGO $APP_SOURCE_DIR/launchpad.conf)
-fi
-
 if [ "$INSTALL_MONGO" = true ]; then
   printf "\n[-] Installing MongoDB ${MONGO_VERSION}...\n\n"
 

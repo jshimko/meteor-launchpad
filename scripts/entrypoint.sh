@@ -10,7 +10,7 @@ if [[ "${MONGO_URL}" == *"127.0.0.1"* ]]; then
     mongod --storageEngine=wiredTiger &
   else
     echo "ERROR: Mongo not installed inside the container."
-    echo "Rebuild with INSTALL_MONGO=true in your launchpad.conf or supply a MONGO_URL environment variable."
+    echo "Rebuild with INSTALL_MONGO=true in build time arguments."
     exit 1
   fi
 fi
