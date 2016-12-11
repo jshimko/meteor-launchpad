@@ -4,7 +4,7 @@ MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 RUN groupadd -r node && useradd -m -g node node
 
 ARG NODE_VERSION=4.6.2
-ENV GOSU_VERSION 1.10
+ARG GOSU_VERSION=1.10
 
 # Optionally Install MongoDB
 ARG INSTALL_MONGO=false
