@@ -45,10 +45,11 @@ docker run -d \
 
 ### Custom Build Options
 
-Meteor Launchpad supports a few custom build options by adding build arguments ar buildtime.
+Meteor Launchpad supports a few custom build options by adding build arguments ar buildtime. Since this effectively
+changes the build image for base, you will need to prebuild your own meteorlaunch images.
 
-```shell
-docker build -t yourname/app \
+```sh
+docker build -t yourname/meteor-launchpad:base \
 --build-arg NODE_VERSION=4.6.2 \
 --build-arg INSTALL_MONGO=false \
 --build-arg MONGO_VERSION=3.2.10 \
@@ -56,8 +57,20 @@ docker build -t yourname/app \
 --build-arg INSTALL_PHANTOMJS=false \
 --build-arg PHANTOM_VERSION=2.1.1 \
 --build-arg INSTALL_GRAPHICSMAGICK=false \
-.
+. && \
+sudo docker build --file ./prod.dockerfile --tag=yourname/meteor-launchpad:latest .
 ```
+
+Then in your Dockerfile of your app, specify your specific build.
+```Dockerfile
+FROM yourname/meteor-launchpad:latest
+```
+
+Then you can build the image with
+```sh
+sudo docker build --tag=yourname/app .
+```
+
 
 If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
 
