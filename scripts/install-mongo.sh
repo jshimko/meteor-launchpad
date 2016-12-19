@@ -9,19 +9,18 @@ fi
 if [ "$INSTALL_MONGO" = true ]; then
   printf "\n[-] Installing MongoDB ${MONGO_VERSION}...\n\n"
 
-	apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys DFFA3DCF326E302C4787673A01C4E7FAAAB2461C
-	apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 42F3E95A2C4F08279C4960ADD68FA50FEA312927
+	apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 0C49F3730359A14518585931BC711F9BA15703C6
 
-	echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
+  echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
 
 	apt-get update
 
   apt-get install -y \
-    mongodb-org=$MONGO_VERSION \
-    mongodb-org-server=$MONGO_VERSION \
-    mongodb-org-shell=$MONGO_VERSION \
-    mongodb-org-mongos=$MONGO_VERSION \
-    mongodb-org-tools=$MONGO_VERSION
+    ${MONGO_PACKAGE}=$MONGO_VERSION \
+    ${MONGO_PACKAGE}-server=$MONGO_VERSION \
+    ${MONGO_PACKAGE}-shell=$MONGO_VERSION \
+    ${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
+    ${MONGO_PACKAGE}-tools=$MONGO_VERSION
 
 	rm -rf /var/lib/apt/lists/*
 	rm -rf /var/lib/mongodb
