@@ -1,3 +1,11 @@
+## v1.1.5
+
+- Don't silence Meteor build output
+- Update readme with details about creating a custom build
+- Mongo 3.4.2
+- Make sure Mongo is run by non-root user (if used at all)
+
+
 ## v1.1.4
 
 - Node 4.7.3
@@ -7,6 +15,7 @@
 ## v1.1.2
 
 - Node 4.6.2
+
 
 ## v1.1.1
 
