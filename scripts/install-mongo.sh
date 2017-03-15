@@ -22,6 +22,9 @@ if [ "$INSTALL_MONGO" = true ]; then
     ${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
     ${MONGO_PACKAGE}-tools=$MONGO_VERSION
 
+  mkdir -p /data/{db,configdb}
+  chown -R mongodb:mongodb /data/{db,configdb}
+
 	rm -rf /var/lib/apt/lists/*
 	rm -rf /var/lib/mongodb
   mv /etc/mongod.conf /etc/mongod.conf.orig
