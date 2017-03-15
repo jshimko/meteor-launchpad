@@ -97,6 +97,20 @@ And then start the app and database containers with...
 docker-compose up -d
 ```
 
+## Custom Builds
+
+If you'd like to create a custom build for some reason, you can use the `build.sh` script in the root of the project to run all of the necessary commands.
+
+First, make any changes you want, then to create your custom build:
+
+```sh
+# builds as jshimko/meteor-launchpad:latest
+./build.sh
+
+# or specify a custom image name
+./build.sh myorg/myimage:latest
+```
+
 ## License
 
 MIT License
