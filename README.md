@@ -108,7 +108,7 @@ First, make any changes you want, then to create your custom build:
 ./build.sh
 
 # or specify a custom image name
-./build.sh myorg/myimage:latest
+./build.sh myorg/myimage
 ```
 
 ## License
