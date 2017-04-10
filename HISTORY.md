@@ -1,3 +1,9 @@
+## v1.1.6
+
+- Node 4.8.1
+- Mongo 3.4.3
+
+
 ## v1.1.5
 
 - Don't silence Meteor build output
