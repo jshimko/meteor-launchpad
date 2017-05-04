@@ -3,12 +3,12 @@ MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
 RUN groupadd -r node && useradd -m -g node node
 
-ENV NODE_VERSION 4.8.1
+ENV NODE_VERSION 4.8.2
 ENV GOSU_VERSION 1.10
 
 # Optionally Install MongoDB
 ENV INSTALL_MONGO false
-ENV MONGO_VERSION 3.4.3
+ENV MONGO_VERSION 3.4.4
 ENV MONGO_MAJOR 3.4
 ENV MONGO_PACKAGE mongodb-org
 
