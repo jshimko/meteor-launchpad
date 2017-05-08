@@ -1,3 +1,8 @@
+## v1.1.8
+
+- replace tar with bsdtar in Meteor installer (fixes #39) thanks @rsercano!
+
+
 ## v1.1.7
 
 - Node 4.8.2
