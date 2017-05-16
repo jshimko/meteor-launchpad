@@ -19,6 +19,9 @@ ENV PHANTOM_VERSION 2.1.1
 # Optionally Install Graphicsmagick
 ENV INSTALL_GRAPHICSMAGICK false
 
+# Optionally Install the listed apt-get packages
+ENV INSTALL_APTGET_PACKAGES ""
+
 # build directories
 ENV APP_SOURCE_DIR /opt/meteor/src
 ENV APP_BUNDLE_DIR /opt/meteor/dist

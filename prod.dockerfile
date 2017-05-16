@@ -8,6 +8,7 @@ ONBUILD COPY . $APP_SOURCE_DIR
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-phantom.sh
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-mongo.sh
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-aptget-packages.sh
 
 # install Meteor, build app, clean up
 ONBUILD RUN cd $APP_SOURCE_DIR && \
