@@ -1,6 +1,10 @@
 FROM jshimko/meteor-launchpad:base
 MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
+# allow setting Node flags for the Meteor build
+ONBUILD ARG TOOL_NODE_FLAGS
+ONBUILD ENV TOOL_NODE_FLAGS $TOOL_NODE_FLAGS
+
 # copy the app to the container
 ONBUILD COPY . $APP_SOURCE_DIR
 
