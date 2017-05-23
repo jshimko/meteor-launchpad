@@ -9,6 +9,7 @@ ONBUILD ENV TOOL_NODE_FLAGS $TOOL_NODE_FLAGS
 
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-meteor.sh
 ONBUILD COPY . $APP_SOURCE_DIR
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-aptget-packages.sh
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/build-meteor.sh
 
 # optionally install Mongo or Phantom at app build time
