@@ -1,3 +1,12 @@
+## v1.2.0
+
+- allow setting TOOL_NODE_FLAGS for Meteor build at image build time (fixes #41)
+
+Example usage:  
+```
+docker build --build-arg TOOL_NODE_FLAGS="--max-old-space-size=2048" -t myorg/myapp:latest .
+``` 
+
 ## v1.1.8
 
 - replace tar with bsdtar in Meteor installer (fixes #39) thanks @rsercano!
