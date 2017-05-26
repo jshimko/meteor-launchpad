@@ -43,21 +43,48 @@ docker run -d \
   yourname/app
 ```
 
-### Custom Build Options
+### Build Options
 
-Meteor Launchpad supports a few custom build options by using a config file in the root of your app.  The currently supported options are to add PhantomJS or MongoDB to your build.  To install either of them, create a `launchpad.conf` in the root of your app and add either of the following values.
+Meteor Launchpad supports setting custom build options in one of two ways.  You can either create a launchpad.conf config file in the root of your app or you can use [Docker build args](https://docs.docker.com/engine/reference/builder/#arg).  The currently supported options are to install PhantomJS, GraphicsMagick, MongoDB, or any list of `apt-get` dependencies (Meteor Launchpad is built on `debian:jesse`).  
+
+If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo inside the container and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
+
+Note that having Mongo in the same container as your app is just for convenience while testing/developing.  In production, you should use a separate Mongo deployment or at least a separate Mongo container.
+
+Here are examples of both methods of setting custom options for your build:
+
+**Option #1 - launchpad.conf**
+
+To use any of them, create a `launchpad.conf` in the root of your app and add any of the following values.
 
 ```sh
 # launchpad.conf
 
-INSTALL_PHANTOMJS=true
+# Use apt-get to install any additional dependencies
+# that you need before your building/running your app
+# (default: undefined)
+APT_GET_INSTALL="curl git wget"
+
+# Install a custom Node version (default: latest 4.x)
+NODE_VERSION=4.8.3
+
+# Installs the latest version of each (default: all false)
 INSTALL_MONGO=true
+INSTALL_PHANTOMJS=true
 INSTALL_GRAPHICSMAGICK=true
 ```
 
-If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
+**Option #2 - Docker Build Args**
 
-Note that having Mongo in the same container as your app is just for convenience while testing/developing.  In production, you should use a separate Mongo deployment or at least a separate Mongo container.
+If you prefer not to have a config file in your project, your other option is to use the Docker `--build-arg` flag.  When you build your image, you can set any of the same values above as a build arg.
+
+```sh
+docker build \
+  --build-arg APT_GET_INSTALL="curl git wget" \
+  --build-arg INSTALL_MONGO=true \
+  --build-arg NODE_VERSION=4.7.2 \
+  -t myorg/myapp:latest .
+```
 
 
 ## Development Builds
@@ -97,7 +124,7 @@ And then start the app and database containers with...
 docker-compose up -d
 ```
 
-## Custom Builds
+## Custom Builds of Meteor Launchpad
 
 If you'd like to create a custom build for some reason, you can use the `build.sh` script in the root of the project to run all of the necessary commands.
 
@@ -106,16 +133,13 @@ First, make any changes you want, then to create your custom build:
 ```sh
 # builds as jshimko/meteor-launchpad:latest
 ./build.sh
-
-# or specify a custom image name
-./build.sh myorg/myimage
 ```
 
 ## License
 
 MIT License
 
-Copyright (c) 2016 Jeremy Shimko
+Copyright (c) 2017 Jeremy Shimko
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
