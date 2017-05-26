@@ -29,13 +29,6 @@ if [ "$1" = "node" -a "$(id -u)" = "0" ]; then
 	exec gosu node "$BASH_SOURCE" "$@"
 fi
 
-if [ "$1" = "node" ]; then
-	numa="numactl --interleave=all"
-	if $numa true &> /dev/null; then
-		set -- $numa "$@"
-	fi
-fi
-
 # Start app
 echo "=> Starting app on port $PORT..."
 exec "$@"
