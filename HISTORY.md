@@ -1,3 +1,7 @@
+## v1.3.1
+
+- fix issue when no launchpad.conf is found in devbuild
+
 ## v1.3.0
 
 - set up all options as Docker build args and update documentation
