@@ -1,0 +1,26 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: /home/launchpad
+
+    docker:
+      - image: debian:jessie
+
+    environment:
+      - DOCKER_VERSION: 17.03.1-ce
+
+    steps:
+      - setup_remote_docker
+      - checkout
+
+      # install OS dependencies
+      - run: .circleci/install.sh
+
+      # run build test
+      - run: .circleci/build.sh
+
+      # deploy the build (if on a deployment branch)
+      - deploy:
+          name: Docker Image Deploment
+          command: .circleci/deploy.sh
