@@ -23,11 +23,9 @@ ONBUILD ENV INSTALL_GRAPHICSMAGICK $INSTALL_GRAPHICSMAGICK
 ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y $APT_GET_INSTALL; fi
 
 # optionally install Mongo or Phantom at app build time
-ONBUILD COPY launchpad.conf $APP_SOURCE_DIR
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-phantom.sh
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-mongo.sh
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh
-
 
 # Node flags for the Meteor build tool
 ONBUILD ARG TOOL_NODE_FLAGS
