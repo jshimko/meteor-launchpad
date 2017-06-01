@@ -1,3 +1,19 @@
+## v2.0.0
+
+- update to CircleCI 2.0 for the automated build/publish
+- This update is a fairly big refactor of the Dockerfiles. It removes the shared base Dockerfile and switches to two totally separate builds - the original `devbuild` with every layer aggressively cached (for faster builds in development), and the lean production build with the bare minimum dependencies. Both builds support using `--build-arg` flags to customize what optional dependencies get installed (Mongo, Phantom, etc). The one potentially breaking change here is the `:devbuild` tag no longer supports the usage of the `launchpad.conf` config file because all dependencies are installed/cached before your app code (and config file) is even copied into the container. However, Mongo/Phantom/Graphicsmagick are all set to install by default now, and you can easily override that by running your app build with the following flags (note that this only applies to the devbuild base image - the lean `:latest` image doesn't have those installed unless you specify them with build args):
+
+```sh
+# to skip installing Mongo, Phantom, or Graphicsmagick
+# when using jshimko/meteor-launchpad:devbuild
+
+docker build \
+  --build-arg INSTALL_MONGO=false \
+  --build-arg INSTALL_PHANTOMJS=false \
+  --build-arg INSTALL_GRAPHICSMAGICK=false \
+  -t myorg/myapp:latest .
+```
+
 ## v1.3.1
 
 - fix issue when no launchpad.conf is found in devbuild
