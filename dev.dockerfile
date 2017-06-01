@@ -1,7 +1,33 @@
-FROM jshimko/meteor-launchpad:base
+FROM debian:jessie
 MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
+RUN groupadd -r node && useradd -m -g node node
+
 ENV DEV_BUILD true
+
+# Gosu
+ENV GOSU_VERSION 1.10
+
+# MongoDB
+ENV MONGO_VERSION 3.4.4
+ENV MONGO_MAJOR 3.4
+ENV MONGO_PACKAGE mongodb-org
+
+# PhantomJS
+ENV PHANTOM_VERSION 2.1.1
+
+# build directories
+ENV APP_SOURCE_DIR /opt/meteor/src
+ENV APP_BUNDLE_DIR /opt/meteor/dist
+ENV BUILD_SCRIPTS_DIR /opt/build_scripts
+
+# Add entrypoint and build scripts
+COPY scripts $BUILD_SCRIPTS_DIR
+RUN chmod -R 750 $BUILD_SCRIPTS_DIR
+
+# install base dependencies, build app, cleanup
+RUN bash $BUILD_SCRIPTS_DIR/install-deps.sh && \
+		bash $BUILD_SCRIPTS_DIR/post-install-cleanup.sh
 
 # define all --build-arg options
 ONBUILD ARG APT_GET_INSTALL
@@ -35,3 +61,16 @@ ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-node.sh
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-meteor.sh
 ONBUILD COPY . $APP_SOURCE_DIR
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/build-meteor.sh
+
+# Default values for Meteor environment variables
+ENV ROOT_URL http://localhost
+ENV MONGO_URL mongodb://127.0.0.1:27017/meteor
+ENV PORT 3000
+
+EXPOSE 3000
+
+WORKDIR $APP_BUNDLE_DIR/bundle
+
+# start the app
+ENTRYPOINT ["./entrypoint.sh"]
+CMD ["node", "main.js"]
