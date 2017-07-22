@@ -4,9 +4,18 @@ set -e
 
 printf "\n[-] Installing base OS dependencies...\n\n"
 
-apt-get update -y
+# install base dependencies
 
-apt-get install -y --no-install-recommends curl ca-certificates bzip2 bsdtar build-essential python git wget
+apt-get update
+
+# ensure we can get an https apt source if redirected
+# https://github.com/jshimko/meteor-launchpad/issues/50
+apt-get install -y apt-transport-https ca-certificates
+
+apt-get install -y --no-install-recommends curl bzip2 bsdtar build-essential python git wget
+
+
+# install gosu
 
 dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
 
