@@ -28,12 +28,10 @@ if [[ "$CIRCLE_BRANCH" == "master" ]]; then
     # login to Docker Hub
     docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
-    # push the versioned builds
+    # push the builds
     docker push $IMAGE_NAME:$VERSION-devbuild
-    docker push $IMAGE_NAME:$VERSION
-
-    # push the latest
     docker push $IMAGE_NAME:devbuild
+    docker push $IMAGE_NAME:$VERSION
     docker push $IMAGE_NAME:latest
   else
     echo "On a deployment branch, but no version tag was found. Skipping image deployment."
