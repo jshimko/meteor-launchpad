@@ -1,3 +1,12 @@
+## v2.0.3
+
+- add `apt-transport-https` for rare issue (most likely caused by apt source redirects) (#50)
+- Node 4.8.4
+
+## v2.0.2
+
+- update CircleCI dependencies
+
 ## v2.0.0
 
 - update to CircleCI 2.0 for the automated build/publish
