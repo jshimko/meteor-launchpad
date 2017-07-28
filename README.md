@@ -115,7 +115,8 @@ app:
     - MONGO_URL=mongodb://mongo:27017/meteor
 
 mongo:
-  image: mongo:latest --storageEngine=wiredTiger
+  image: mongo:latest
+  command: mongod --storageEngine=wiredTiger
 ```
 
 And then start the app and database containers with...
