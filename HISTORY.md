@@ -1,3 +1,7 @@
+## v2.0.4
+
+- support `APT_GET_INSTALL` from launchpad.conf
+
 ## v2.0.3
 
 - add `apt-transport-https` for rare issue (most likely caused by apt source redirects) (#50)
