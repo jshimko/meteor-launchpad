@@ -136,6 +136,17 @@ First, make any changes you want, then to create your custom build:
 ./build.sh
 ```
 
+## Development
+
+If you would to improve meteor-launchpad:
+
+* fork this repo
+* clone it in your development environment
+* make your changes
+* run the ./build.sh script to create meteor-launchpad locally
+* rebuild your container with docker build -t yourname/app .
+* if you think the changes are generally useful, push them to your repo and create a pull request
+
 ## License
 
 MIT License
