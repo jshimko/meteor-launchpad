@@ -51,14 +51,14 @@ ONBUILD COPY . $APP_SOURCE_DIR
 
 # install all dependencies, build app, clean up
 ONBUILD RUN cd $APP_SOURCE_DIR && \
-            $BUILD_SCRIPTS_DIR/install-deps.sh && \
-            $BUILD_SCRIPTS_DIR/install-node.sh && \
-            $BUILD_SCRIPTS_DIR/install-phantom.sh && \
-						$BUILD_SCRIPTS_DIR/install-graphicsmagick.sh && \
-            $BUILD_SCRIPTS_DIR/install-mongo.sh && \
-            $BUILD_SCRIPTS_DIR/install-meteor.sh && \
-            $BUILD_SCRIPTS_DIR/build-meteor.sh && \
-            $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
+  $BUILD_SCRIPTS_DIR/install-deps.sh && \
+  $BUILD_SCRIPTS_DIR/install-node.sh && \
+  $BUILD_SCRIPTS_DIR/install-phantom.sh && \
+  $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh && \
+  $BUILD_SCRIPTS_DIR/install-mongo.sh && \
+  $BUILD_SCRIPTS_DIR/install-meteor.sh && \
+  $BUILD_SCRIPTS_DIR/build-meteor.sh && \
+  $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
 
 # Default values for Meteor environment variables
 ENV ROOT_URL http://localhost
