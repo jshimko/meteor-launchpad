@@ -1,3 +1,9 @@
+## v2.1.0
+
+- use `--server-only` in `meteor build` to skip mobile platform builds
+- Mongo 3.4.7
+- update CircleCI Docker version
+
 ## v2.0.4
 
 - support `APT_GET_INSTALL` from launchpad.conf
