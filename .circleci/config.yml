@@ -8,7 +8,7 @@ jobs:
       - image: debian:jessie
 
     environment:
-      - DOCKER_VERSION: 17.03.1-ce
+      - DOCKER_VERSION: 17.05.1-ce
 
     steps:
       - setup_remote_docker
