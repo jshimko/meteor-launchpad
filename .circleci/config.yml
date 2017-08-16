@@ -5,17 +5,14 @@ jobs:
     working_directory: /home/launchpad
 
     docker:
-      - image: debian:jessie
-
-    environment:
-      - DOCKER_VERSION: 17.05.1-ce
+      - image: docker:latest
 
     steps:
       - setup_remote_docker
       - checkout
 
       # install OS dependencies
-      - run: .circleci/install.sh
+      - run: apk update && apk upgrade && apk add --no-cache bash git openssh
 
       # run build test
       - run: .circleci/build.sh

@@ -26,7 +26,7 @@ if [[ "$CIRCLE_BRANCH" == "master" ]]; then
     docker tag $IMAGE_NAME:latest $IMAGE_NAME:$VERSION
 
     # login to Docker Hub
-    docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    docker login -u $DOCKER_USER -p $DOCKER_PASS
 
     # push the builds
     docker push $IMAGE_NAME:$VERSION-devbuild
