@@ -1,3 +1,7 @@
+## v2.1.1
+
+- switch to building the image inside `docker:latest` on CircleCI
+
 ## v2.1.0
 
 - use `--server-only` in `meteor build` to skip mobile platform builds
