@@ -1,3 +1,7 @@
+## v2.1.3
+
+- oh, CircleCI... your tag handling sucks sometimes
+
 ## v2.1.2
 
 - update GPG key servers to use port 80 (fixes firewall issues for those that can't use non-standard ports)
