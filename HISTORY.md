@@ -1,3 +1,7 @@
+## v2.1.2
+
+- update GPG key servers to use port 80 (fixes firewall issues for those that can't use non-standard ports)
+
 ## v2.1.1
 
 - switch to building the image inside `docker:latest` on CircleCI
