@@ -1,3 +1,9 @@
+## v2.2.0
+
+- add ability to inject an NPM_TOKEN for installation of private packages
+- update dockerignore
+- add deploy.sh for pushing your built images to a Docker registry
+
 ## v2.1.3
 
 - oh, CircleCI... your tag handling sucks sometimes
