@@ -86,6 +86,13 @@ docker build \
   -t myorg/myapp:latest .
 ```
 
+## Installing Private NPM Packages
+
+You can provide your [NPM auth token](http://blog.npmjs.org/post/118393368555/deploying-with-npm-private-modules) with the `NPM_TOKEN` build arg.
+
+```sh
+docker build --build-arg NPM_TOKEN="<your token>" -t myorg/myapp:latest .
+```
 
 ## Development Builds
 
