@@ -1,4 +1,5 @@
+.circleci
 .git
 build.sh
-circle.yml
-README.md
+deploy.sh
+*.md
