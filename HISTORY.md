@@ -1,3 +1,8 @@
+## v2.2.1
+
+- Mongo 3.4.9
+- add more verbosity to curl calls
+
 ## v2.2.0
 
 - add ability to inject an NPM_TOKEN for installation of private packages
