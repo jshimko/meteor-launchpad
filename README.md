@@ -15,6 +15,16 @@ Then you can build the image with:
 docker build -t yourname/app .
 ```
 
+**Setting up a .dockerignore file**
+
+There are several parts of a Meteor development environment that you don't need to pass into a Docker build because a complete production build happens inside the container.  For example, you don't need to pass in your `node_modules` or the local build files and development database that live in `.meteor/local`.  To avoid copying all of these into the container, here's a recommended starting point for a `.dockerignore` file to be put into the root of your app.  Read more: https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+```
+.git
+.meteor/local
+node_modules
+```
+
 ### Run
 
 Now you can run your container with the following command...
