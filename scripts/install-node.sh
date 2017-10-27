@@ -4,7 +4,6 @@ set -e
 
 if [ -f $APP_SOURCE_DIR/launchpad.conf ]; then
   source <(grep NODE_VERSION $APP_SOURCE_DIR/launchpad.conf)
-fi
 
 printf "\n[-] Installing Node ${NODE_VERSION}...\n\n"
 
