@@ -1,3 +1,7 @@
+## v2.2.2
+
+- Source NODE_VERSION from launchpad.conf if present
+
 ## v2.2.1
 
 - Mongo 3.4.9
