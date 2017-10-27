@@ -24,6 +24,8 @@ rm -rf /root/{.npm,.cache,.config,.cordova,.local}
 rm -rf /tmp/*
 
 # remove npm
+npm uninstall -g node-gyp
+npm cache clean
 rm -rf /opt/nodejs/bin/npm
 rm -rf /opt/nodejs/lib/node_modules/npm/
 
