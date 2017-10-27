@@ -8,5 +8,6 @@ fi
 
 if [ "$INSTALL_NODEGYP" = true ]; then
   printf "\n[-] Installing node-gyp ...\n\n"
-  gosu root npm install -g node-gyp
+  npm install -g node-gyp --unsafe-perm
+
 fi
