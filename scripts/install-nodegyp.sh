@@ -8,5 +8,5 @@ fi
 
 if [ "$INSTALL_NODEGYP" = true ]; then
   printf "\n[-] Installing node-gyp ...\n\n"
-  npm install -g node-gyp
+  gosu root npm install -g node-gyp
 fi
