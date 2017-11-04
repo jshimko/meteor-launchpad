@@ -1,3 +1,9 @@
+## v2.3.0
+
+- Updates for Meteor 1.6 support
+- Node 8.9.0
+- Mongo 3.4.10
+
 ## v2.2.2
 
 - Source NODE_VERSION from launchpad.conf if present
