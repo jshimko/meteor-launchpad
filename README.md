@@ -76,7 +76,7 @@ To use any of them, create a `launchpad.conf` in the root of your app and add an
 APT_GET_INSTALL="curl git wget"
 
 # Install a custom Node version (default: latest 8.x)
-NODE_VERSION=4.8.3
+NODE_VERSION=8.9.0
 
 # Installs the latest version of each (default: all false)
 INSTALL_MONGO=true
