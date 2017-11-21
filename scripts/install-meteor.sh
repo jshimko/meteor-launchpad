@@ -14,5 +14,6 @@ else
 
   # install
   printf "\n[-] Installing Meteor $METEOR_VERSION...\n\n"
-  curl -v https://install.meteor.com/?release=$METEOR_VERSION | sh
+  curl -v https://install.meteor.com/?release=$METEOR_VERSION | \
+  sed "s/tar -xzf.*/bsdtar -xf \"\$TARBALL_FILE\" -C \"\$INSTALL_TMPDIR\"/g" | sh
 fi
