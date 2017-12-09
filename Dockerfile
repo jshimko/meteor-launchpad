@@ -51,7 +51,6 @@ ONBUILD ENV TOOL_NODE_FLAGS $TOOL_NODE_FLAGS
 
 # optionally run scripts before launchpad installation to cache big dependencies in lower layer that don´t change often
 ONBUILD COPY ./$PRE_INSTALL_SCRIPTS $BUILD_SCRIPTS_DIR
-ONBUILD RUN echo $(ls -1 $BUILD_SCRIPTS_DIR)
 ONBUILD RUN if [ "$PRE_INSTALL_SCRIPTS" ]; then $BUILD_SCRIPTS_DIR/$PRE_INSTALL_SCRIPTS; fi
 
 # optionally custom apt dependencies at app build time
