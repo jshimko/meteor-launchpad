@@ -7,7 +7,7 @@ RUN groupadd -r node && useradd -m -g node node
 ENV GOSU_VERSION 1.10
 
 # MongoDB
-ENV MONGO_VERSION 3.4.4
+ENV MONGO_VERSION 3.4.10
 ENV MONGO_MAJOR 3.4
 ENV MONGO_PACKAGE mongodb-org
 
@@ -28,7 +28,10 @@ ONBUILD ARG APT_GET_INSTALL
 ONBUILD ENV APT_GET_INSTALL $APT_GET_INSTALL
 
 ONBUILD ARG NODE_VERSION
-ONBUILD ENV NODE_VERSION ${NODE_VERSION:-4.8.4}
+ONBUILD ENV NODE_VERSION ${NODE_VERSION:-8.9.0}
+
+ONBUILD ARG NPM_TOKEN
+ONBUILD ENV NPM_TOKEN $NPM_TOKEN
 
 ONBUILD ARG INSTALL_MONGO
 ONBUILD ENV INSTALL_MONGO $INSTALL_MONGO
@@ -51,14 +54,14 @@ ONBUILD COPY . $APP_SOURCE_DIR
 
 # install all dependencies, build app, clean up
 ONBUILD RUN cd $APP_SOURCE_DIR && \
-            $BUILD_SCRIPTS_DIR/install-deps.sh && \
-            $BUILD_SCRIPTS_DIR/install-node.sh && \
-            $BUILD_SCRIPTS_DIR/install-phantom.sh && \
-						$BUILD_SCRIPTS_DIR/install-graphicsmagick.sh && \
-            $BUILD_SCRIPTS_DIR/install-mongo.sh && \
-            $BUILD_SCRIPTS_DIR/install-meteor.sh && \
-            $BUILD_SCRIPTS_DIR/build-meteor.sh && \
-            $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
+  $BUILD_SCRIPTS_DIR/install-deps.sh && \
+  $BUILD_SCRIPTS_DIR/install-node.sh && \
+  $BUILD_SCRIPTS_DIR/install-phantom.sh && \
+  $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh && \
+  $BUILD_SCRIPTS_DIR/install-mongo.sh && \
+  $BUILD_SCRIPTS_DIR/install-meteor.sh && \
+  $BUILD_SCRIPTS_DIR/build-meteor.sh && \
+  $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
 
 # Default values for Meteor environment variables
 ENV ROOT_URL http://localhost

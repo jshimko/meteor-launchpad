@@ -15,6 +15,16 @@ Then you can build the image with:
 docker build -t yourname/app .
 ```
 
+**Setting up a .dockerignore file**
+
+There are several parts of a Meteor development environment that you don't need to pass into a Docker build because a complete production build happens inside the container.  For example, you don't need to pass in your `node_modules` or the local build files and development database that live in `.meteor/local`.  To avoid copying all of these into the container, here's a recommended starting point for a `.dockerignore` file to be put into the root of your app.  Read more: https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+```
+.git
+.meteor/local
+node_modules
+```
+
 ### Run
 
 Now you can run your container with the following command...
@@ -65,8 +75,8 @@ To use any of them, create a `launchpad.conf` in the root of your app and add an
 # (default: undefined)
 APT_GET_INSTALL="curl git wget"
 
-# Install a custom Node version (default: latest 4.x)
-NODE_VERSION=4.8.3
+# Install a custom Node version (default: latest 8.x)
+NODE_VERSION=8.9.0
 
 # Installs the latest version of each (default: all false)
 INSTALL_MONGO=true
@@ -82,10 +92,17 @@ If you prefer not to have a config file in your project, your other option is to
 docker build \
   --build-arg APT_GET_INSTALL="curl git wget" \
   --build-arg INSTALL_MONGO=true \
-  --build-arg NODE_VERSION=4.7.2 \
+  --build-arg NODE_VERSION=8.9.0 \
   -t myorg/myapp:latest .
 ```
 
+## Installing Private NPM Packages
+
+You can provide your [NPM auth token](http://blog.npmjs.org/post/118393368555/deploying-with-npm-private-modules) with the `NPM_TOKEN` build arg.
+
+```sh
+docker build --build-arg NPM_TOKEN="<your token>" -t myorg/myapp:latest .
+```
 
 ## Development Builds
 

@@ -5,6 +5,11 @@
 #
 set -e
 
+# set up npm auth token if one is provided
+if [[ "$NPM_TOKEN" ]]; then
+  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+fi
+
 # Fix permissions warning in Meteor >=1.4.2.1 without breaking
 # earlier versions of Meteor with --unsafe-perm or --allow-superuser
 # https://github.com/meteor/meteor/issues/7959
@@ -19,7 +24,7 @@ meteor npm install
 # build the bundle
 printf "\n[-] Building Meteor application...\n\n"
 mkdir -p $APP_BUNDLE_DIR
-meteor build --directory $APP_BUNDLE_DIR
+meteor build --directory $APP_BUNDLE_DIR --server-only
 
 # run npm install in bundle
 printf "\n[-] Running npm install in the server bundle...\n\n"

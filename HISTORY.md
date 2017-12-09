@@ -1,3 +1,42 @@
+## v2.3.0
+
+- Updates for Meteor 1.6 support
+- Node 8.9.0
+- Mongo 3.4.10
+
+## v2.2.2
+
+- Source NODE_VERSION from launchpad.conf if present
+
+## v2.2.1
+
+- Mongo 3.4.9
+- add more verbosity to curl calls
+
+## v2.2.0
+
+- add ability to inject an NPM_TOKEN for installation of private packages
+- update dockerignore
+- add deploy.sh for pushing your built images to a Docker registry
+
+## v2.1.3
+
+- oh, CircleCI... your tag handling sucks sometimes
+
+## v2.1.2
+
+- update GPG key servers to use port 80 (fixes firewall issues for those that can't use non-standard ports)
+
+## v2.1.1
+
+- switch to building the image inside `docker:latest` on CircleCI
+
+## v2.1.0
+
+- use `--server-only` in `meteor build` to skip mobile platform builds
+- Mongo 3.4.7
+- update CircleCI Docker version
+
 ## v2.0.4
 
 - support `APT_GET_INSTALL` from launchpad.conf
