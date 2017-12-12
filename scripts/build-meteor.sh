@@ -54,6 +54,7 @@ meteor npm uninstall flatten-packages
 
 # put the entrypoint script in WORKDIR
 mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
+ls -la $APP_BUNDLE_DIR/bundle/
 
 # change ownership of the app to the node user
 chown -R node:node $APP_BUNDLE_DIR
