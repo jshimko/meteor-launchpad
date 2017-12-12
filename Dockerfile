@@ -79,6 +79,10 @@ ONBUILD RUN $BUILD_SCRIPTS_DIR/build-meteor.sh
 
 ONBUILD RUN $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
 
+# put the entrypoint script in WORKDIR
+ONBUILD RUN mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
+ONBUILD RUN ls -la $APP_BUNDLE_DIR/bundle/
+
 # Default values for Meteor environment variables
 ENV ROOT_URL http://localhost
 ENV MONGO_URL mongodb://127.0.0.1:27017/meteor

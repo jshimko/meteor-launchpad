@@ -35,10 +35,8 @@ meteor npm install --production
 # build the bundle
 printf "\n[-] Building Meteor application ...\n\n"
 mkdir -p $APP_BUNDLE_DIR
-##meteor build --directory $APP_BUNDLE_DIR --server-only
 
-time METEOR_PROFILE=200 meteor build --directory $APP_BUNDLE_DIR --server-only
-
+time METEOR_PROFILE=1000 meteor build --directory $APP_BUNDLE_DIR --server-only
 
 echo "Done."
 
@@ -52,9 +50,9 @@ meteor npm install flatten-packages
 ./node_modules/flatten-packages/bin/flatten
 meteor npm uninstall flatten-packages
 
-# put the entrypoint script in WORKDIR
-mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
-ls -la $APP_BUNDLE_DIR/bundle/
+# # put the entrypoint script in WORKDIR
+# mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
+# ls -la $APP_BUNDLE_DIR/bundle/
 
 # change ownership of the app to the node user
 chown -R node:node $APP_BUNDLE_DIR
