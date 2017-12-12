@@ -20,11 +20,15 @@ cd $APP_SOURCE_DIR
 # Install app deps
 printf "\n[-] Running npm install in app directory...\n\n"
 rm -rf node_modules/
-meteor reset
+printf "\n[-] meteor reset ...\n\n"
+meteor --allow-superuser reset
+printf "\n[-] meteor npm install ...\n\n"
 meteor npm install
+printf "\n[-] Running streamline 1/2 ...\n\n"
 meteor npm install flatten-packages
 meteor npm run streamline
 meteor npm uninstall flatten-packages
+printf "\n[-] Running streamline  2/2 ...\n\n"
 meteor npm install
 meteor npm install --production
 
@@ -32,6 +36,7 @@ meteor npm install --production
 printf "\n[-] Building Meteor application ...\n\n"
 mkdir -p $APP_BUNDLE_DIR
 ##meteor build --directory $APP_BUNDLE_DIR --server-only
+
 time METEOR_PROFILE=200 meteor build --directory $APP_BUNDLE_DIR --server-only
 
 

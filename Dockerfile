@@ -51,6 +51,8 @@ ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y
 
 # copy the app to the container
 ONBUILD COPY . $APP_SOURCE_DIR
+ONBUILD RUN ls -la $APP_SOURCE_DIR
+## ONBUILD COPY .meteor $APP_SOURCE_DIR/.meteor
 
 # install all dependencies, build app, clean up
 ONBUILD WORKDIR $APP_SOURCE_DIR
@@ -67,9 +69,14 @@ ONBUILD ENV METEOR_USER meteor
 ONBUILD RUN echo N | apt-get install -y sudo
 ONBUILD RUN $BUILD_SCRIPTS_DIR/add-user.sh $METEOR_USER
 ONBUILD RUN echo "$METEOR_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+ONBUILD RUN chown -R $METEOR_USER $BUILD_SCRIPTS_DIR
 
-ONBUILD RUN su $METEOR_USER -m -c "sudo $BUILD_SCRIPTS_DIR/install-meteor.sh"
+
+ONBUILD RUN $BUILD_SCRIPTS_DIR/install-meteor.sh
+# ONBUILD RUN su $METEOR_USER -m -c "sudo $BUILD_SCRIPTS_DIR/install-meteor.sh"
 ONBUILD RUN $BUILD_SCRIPTS_DIR/build-meteor.sh
+# ONBUILD RUN su $METEOR_USER -m -c "sudo $BUILD_SCRIPTS_DIR/build-meteor.sh"
+
 ONBUILD RUN $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
 
 # Default values for Meteor environment variables
