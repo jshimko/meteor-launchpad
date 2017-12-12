@@ -40,6 +40,8 @@ mkdir -p $APP_BUNDLE_DIR
 time METEOR_PROFILE=200 meteor build --directory $APP_BUNDLE_DIR --server-only
 
 
+echo "Done."
+
 # run npm install in bundle
 printf "\n[-] Running npm install in the server bundle...\n\n"
 cd $APP_BUNDLE_DIR/bundle/programs/server/
