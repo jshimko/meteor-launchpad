@@ -38,15 +38,10 @@ export GNUPGHOME="$(mktemp -d)"
 
 key=B42F6819007F00F88E364FD4036A9C25BF357DD4
 
-for server in
-	ha.pool.sks-keyservers.net \
-	hkp://p80.pool.sks-keyservers.net:80 \
-	keyserver.ubuntu.com \
-	hkp://keyserver.ubuntu.com:80 \
-	pgp.mit.edu \
-; do
+for server in ha.pool.sks-keyservers.net hkp://p80.pool.sks-keyservers.net:80 keyserver.ubuntu.com hkp://keyserver.ubuntu.com:80 pgp.mit.edu; do
 	if gpg --keyserver "$server" --recv-keys "$key"; then
-		echo "$server worked."
+		echo "gpg server: $server worked."
+    break;
 	fi
 done
 
