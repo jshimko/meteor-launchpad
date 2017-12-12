@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
+MAINTAINER Nathan Trujillo <nathan.d.trujillo@gmail.com>
 
 RUN groupadd -r node && useradd -m -g node node
 
