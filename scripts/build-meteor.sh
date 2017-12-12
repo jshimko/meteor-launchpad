@@ -55,4 +55,4 @@ meteor npm uninstall flatten-packages
 # ls -la $APP_BUNDLE_DIR/bundle/
 
 # change ownership of the app to the node user
-chown -R node:node $APP_BUNDLE_DIR
+# chown -R node:node $APP_BUNDLE_DIR
