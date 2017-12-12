@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM ubuntu:16.04
 MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
 
 RUN groupadd -r node && useradd -m -g node node
@@ -53,15 +53,24 @@ ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y
 ONBUILD COPY . $APP_SOURCE_DIR
 
 # install all dependencies, build app, clean up
-ONBUILD RUN cd $APP_SOURCE_DIR && \
-  $BUILD_SCRIPTS_DIR/install-deps.sh && \
-  $BUILD_SCRIPTS_DIR/install-node.sh && \
-  $BUILD_SCRIPTS_DIR/install-phantom.sh && \
-  $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh && \
-  $BUILD_SCRIPTS_DIR/install-mongo.sh && \
-  $BUILD_SCRIPTS_DIR/install-meteor.sh && \
-  $BUILD_SCRIPTS_DIR/build-meteor.sh && \
-  $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
+ONBUILD WORKDIR $APP_SOURCE_DIR
+
+ONBUILD RUN $BUILD_SCRIPTS_DIR/install-deps.sh
+ONBUILD RUN $BUILD_SCRIPTS_DIR/install-node.sh
+ONBUILD RUN $BUILD_SCRIPTS_DIR/install-phantom.sh
+ONBUILD RUN $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh
+ONBUILD RUN $BUILD_SCRIPTS_DIR/install-mongo.sh
+
+
+# setup a user to install and run meteor as
+ONBUILD ENV METEOR_USER meteor
+ONBUILD RUN echo N | apt-get install -y sudo
+ONBUILD RUN $BUILD_SCRIPTS_DIR/add-user.sh $METEOR_USER
+ONBUILD RUN echo "$METEOR_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+ONBUILD RUN su $METEOR_USER -m -c "sudo $BUILD_SCRIPTS_DIR/install-meteor.sh"
+ONBUILD RUN $BUILD_SCRIPTS_DIR/build-meteor.sh
+ONBUILD RUN $BUILD_SCRIPTS_DIR/post-build-cleanup.sh
 
 # Default values for Meteor environment variables
 ENV ROOT_URL http://localhost

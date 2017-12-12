@@ -24,6 +24,8 @@ fi
 apt-get install -y --no-install-recommends curl bzip2 bsdtar build-essential python git wget
 
 
+echo N | apt-get install -y sudo
+
 # install gosu
 
 dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
