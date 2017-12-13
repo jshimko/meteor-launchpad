@@ -23,14 +23,13 @@ rm -rf node_modules/
 printf "\n[-] meteor reset ...\n\n"
 meteor --allow-superuser reset
 printf "\n[-] meteor npm install ...\n\n"
-meteor npm install
-printf "\n[-] Running streamline 1/2 ...\n\n"
-meteor npm install flatten-packages
-meteor npm run streamline
-meteor npm uninstall flatten-packages
-printf "\n[-] Running streamline  2/2 ...\n\n"
-meteor npm install
 meteor npm install --production
+printf "\n[-] Running streamline 1/2 [flatten] ...\n\n"
+meteor npm install flatten-packages
+meteor node ./node_modules/flatten-packages/bin/flatten
+meteor npm uninstall flatten-packages
+printf "\n[-] Running streamline  2/2 [dedupe]...\n\n"
+meteor npm dedupe
 
 # build the bundle
 printf "\n[-] Building Meteor application ...\n\n"
