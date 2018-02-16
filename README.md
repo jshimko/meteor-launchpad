@@ -107,6 +107,27 @@ You can provide your [NPM auth token](http://blog.npmjs.org/post/118393368555/de
 docker build --build-arg NPM_TOKEN="<your token>" -t myorg/myapp:latest .
 ```
 
+## Installing Private Meteor Packages
+
+You can provide private Meteor packages by copying them to the [`packages/`](https://guide.meteor.com/writing-atmosphere-packages.html#local-packages) folder per the standard Meteor docs. Please note the recommended `.dockerignore` for Meteor Launchpad excludes the `packages/<package>/.npm` directory.
+
+```
+MeteorApp
+├──.meteor
+├──client
+├──server
+├──packages
+|  |--privatePackage1
+|  |  ├──.npm
+|  |  └─ <stuff>
+|  └--privatePackage2
+|     ├──.npm
+|     └─ <stuff>
+├── <etc>
+├──package.json
+└──launchpad.conf
+```
+
 ## Development Builds
 
 You can optionally avoid downloading Meteor every time when building regularly in development.  Add the following to your Dockerfile instead...
