@@ -23,6 +23,8 @@ There are several parts of a Meteor development environment that you don't need 
 .git
 .meteor/local
 node_modules
+packages/*/.git
+packages/*/.npm
 ```
 
 ### Run
