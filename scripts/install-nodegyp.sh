@@ -8,6 +8,5 @@ fi
 
 if [ "$INSTALL_NODEGYP" = true ]; then
   printf "\n[-] Installing node-gyp ...\n\n"
-  npm install -g node-gyp --unsafe-perm
-
+  npm install -g node-gyp
 fi
