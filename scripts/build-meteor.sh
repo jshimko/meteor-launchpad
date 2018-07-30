@@ -5,6 +5,10 @@
 #
 set -e
 
+if [ -f $APP_SOURCE_DIR/launchpad.conf ]; then
+  source <(grep TOOL_NODE_FLAGS $APP_SOURCE_DIR/launchpad.conf)
+fi
+
 # set up npm auth token if one is provided
 if [[ "$NPM_TOKEN" ]]; then
   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
