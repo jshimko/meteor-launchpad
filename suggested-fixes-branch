@@ -1,0 +1,62 @@
+diff --git a/Dockerfile b/Dockerfile
+index 3e7f1c4..8bad820 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -46,6 +46,12 @@ ONBUILD ENV INSTALL_GRAPHICSMAGICK $INSTALL_GRAPHICSMAGICK
+ ONBUILD ARG TOOL_NODE_FLAGS
+ ONBUILD ENV TOOL_NODE_FLAGS $TOOL_NODE_FLAGS
+ 
++# Add option to specify http and https proxies if needed during build
++ONBUILD ARG HTTP_PROXY
++ONBUILD ARG HTTPS_PROXY
++ONBUILD ENV HTTP_PROXY $HTTP_PROXY
++ONBUILD ENV HTTPS_PROXY $HTTPS_PROXY
++
+ # optionally custom apt dependencies at app build time
+ ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y $APT_GET_INSTALL; fi
+ 
+diff --git a/dev.dockerfile b/dev.dockerfile
+index 8911919..c5287d0 100644
+--- a/dev.dockerfile
++++ b/dev.dockerfile
+@@ -45,6 +45,12 @@ ONBUILD ENV INSTALL_PHANTOMJS ${INSTALL_PHANTOMJS:-true}
+ ONBUILD ARG INSTALL_GRAPHICSMAGICK
+ ONBUILD ENV INSTALL_GRAPHICSMAGICK ${INSTALL_GRAPHICSMAGICK:-true}
+ 
++# Add option to specify http and https proxies if needed during build
++ONBUILD ARG HTTP_PROXY
++ONBUILD ARG HTTPS_PROXY
++ONBUILD ENV HTTP_PROXY $HTTP_PROXY
++ONBUILD ENV HTTPS_PROXY $HTTPS_PROXY
++
+ # optionally custom apt dependencies at app build time
+ ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y $APT_GET_INSTALL; fi
+ 
+diff --git a/scripts/build-meteor.sh b/scripts/build-meteor.sh
+index 5f35df4..fdcc48d 100755
+--- a/scripts/build-meteor.sh
++++ b/scripts/build-meteor.sh
+@@ -21,6 +21,11 @@ cd $APP_SOURCE_DIR
+ printf "\n[-] Running npm install in app directory...\n\n"
+ meteor npm install
+ 
++# Removing buggy minifier package, to make build faster, more stable, low impact on final size
++# https://github.com/meteor/meteor/issues/5329
++printf "\n[-] Removing buggy minifier...\n\n"
++meteor remove standard-minifier-js
++
+ # build the bundle
+ printf "\n[-] Building Meteor application...\n\n"
+ mkdir -p $APP_BUNDLE_DIR
+@@ -31,6 +36,12 @@ printf "\n[-] Running npm install in the server bundle...\n\n"
+ cd $APP_BUNDLE_DIR/bundle/programs/server/
+ meteor npm install --production
+ 
++# fix fibers bug
++# https://github.com/jshimko/meteor-launchpad/issues/92
++printf "\n[-] Fixing Fibers PATH bug in node>8.x...\n\n"
++cd $APP_BUNDLE_DIR/bundle/programs/server/
++npm remove fibers && npm install fibers
++
+ # put the entrypoint script in WORKDIR
+ mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
