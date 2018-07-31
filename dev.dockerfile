@@ -45,6 +45,12 @@ ONBUILD ENV INSTALL_PHANTOMJS ${INSTALL_PHANTOMJS:-true}
 ONBUILD ARG INSTALL_GRAPHICSMAGICK
 ONBUILD ENV INSTALL_GRAPHICSMAGICK ${INSTALL_GRAPHICSMAGICK:-true}
 
+# Add option to specify http and https proxies if needed during build
+ONBUILD ARG HTTP_PROXY
+ONBUILD ARG HTTPS_PROXY
+ONBUILD ENV HTTP_PROXY $HTTP_PROXY
+ONBUILD ENV HTTPS_PROXY $HTTPS_PROXY
+
 # optionally custom apt dependencies at app build time
 ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y $APT_GET_INSTALL; fi
 
