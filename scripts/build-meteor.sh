@@ -21,6 +21,11 @@ cd $APP_SOURCE_DIR
 printf "\n[-] Running npm install in app directory...\n\n"
 meteor npm install
 
+# Removing buggy minifier package, to make build faster, more stable, low impact on final size
+# see: https://github.com/meteor/meteor/issues/5329
+printf "\n[-] Removing buggy minifier...\n\n"
+meteor remove standard-minifier-js
+
 # build the bundle
 printf "\n[-] Building Meteor application...\n\n"
 mkdir -p $APP_BUNDLE_DIR
