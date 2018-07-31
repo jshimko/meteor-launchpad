@@ -36,6 +36,12 @@ printf "\n[-] Running npm install in the server bundle...\n\n"
 cd $APP_BUNDLE_DIR/bundle/programs/server/
 meteor npm install --production
 
+# fix fibers bug - error in PATH bug hitting node>8.x..
+# see: https://github.com/jshimko/meteor-launchpad/issues/92
+printf "\n[-] Fixing Fibers PATH bug in node>8.x...\n\n"
+cd $APP_BUNDLE_DIR/bundle/programs/server/
+npm remove fibers && npm install fibers
+
 # put the entrypoint script in WORKDIR
 mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
 
