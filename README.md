@@ -114,6 +114,21 @@ FROM jshimko/meteor-launchpad:devbuild
 
 This isn't recommended for your final production build because it creates a much larger image, but it's a bit of a time saver when you're building often in development.  The first build you run will download/install Meteor and then every subsequent build will be able to skip that step and just build the app.
 
+## Meteor.settings
+
+If you want to include custom settings (as you would via a [settings.json file](https://docs.meteor.com/api/core.html#Meteor-settings)), you need to set the METEOR_SETTINGS environment variable:
+
+```sh
+docker run -d \
+  -e ROOT_URL=http://example.com \
+  -e MONGO_URL=mongodb://url \
+  -e MONGO_OPLOG_URL=mongodb://oplog_url \
+  -e MAIL_URL=smtp://mail_url.com \
+  -e METEOR_SETTINGS="$(cat settings.json)" \
+  -p 80:3000 \
+  yourname/app
+```
+
 ## Docker Compose
 
 Add a `docker-compose.yml` to the root of your project with the following content and edit the app image name to match your build name.  Everything else should work as-is.
