@@ -25,6 +25,11 @@ cd $APP_SOURCE_DIR
 printf "\n[-] Running npm install in app directory...\n\n"
 meteor npm install
 
+# Removing buggy minifier package, to make build faster, more stable, low impact on final size
+# see: https://github.com/meteor/meteor/issues/5329
+printf "\n[-] Removing buggy minifier...\n\n"
+meteor remove standard-minifier-js
+
 # build the bundle
 printf "\n[-] Building Meteor application...\n\n"
 mkdir -p $APP_BUNDLE_DIR
@@ -34,6 +39,12 @@ meteor build --directory $APP_BUNDLE_DIR --server-only
 printf "\n[-] Running npm install in the server bundle...\n\n"
 cd $APP_BUNDLE_DIR/bundle/programs/server/
 meteor npm install --production --verbose
+
+# fix fibers bug - error in PATH bug hitting node>8.x..
+# see: https://github.com/jshimko/meteor-launchpad/issues/92
+printf "\n[-] Fixing Fibers PATH bug in node>8.x...\n\n"
+cd $APP_BUNDLE_DIR/bundle/programs/server/
+npm remove fibers && npm install fibers
 
 # put the entrypoint script in WORKDIR
 mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
