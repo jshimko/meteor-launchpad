@@ -40,7 +40,7 @@ docker run -d \
   yourname/app
 ```
 
-#### Delay startup
+#### Delay Startup Based on Time
 
 If you need to force a delay in the startup of the Node process (for example, to wait for a database to be ready), you can set the `STARTUP_DELAY` environment variable to any number of seconds.  For example, to delay starting the app by 10 seconds, you would do this:
 
@@ -49,6 +49,24 @@ docker run -d \
   -e ROOT_URL=http://example.com \
   -e MONGO_URL=mongodb://url \
   -e STARTUP_DELAY=10 \
+  -p 80:3000 \
+  yourname/app
+```
+
+#### Delay Startup Based on Network Connection
+If you need to force a delay in startup of the node process while waiting for
+the database (or some other TCP service) to be ready after
+```WAIT_FOR_SECONDS``` seconds (the default if unspecified is 15 seconds), use
+```WAIT_FOR```. To make the container refuse to start without being able to
+contact the service, set the variable ```WAIT_FOR_REQUIRED``` to a value.
+
+```sh
+docker run -d \
+  -e ROOT_URL=http://example.com \
+  -e MONGO_URL=mongodb://url \
+  -e WAIT_FOR_SECONDS=13 \
+  -e WAIT_FOR_REQUIRED=1 \
+  -e WAIT_FOR=host:port \
   -p 80:3000 \
   yourname/app
 ```

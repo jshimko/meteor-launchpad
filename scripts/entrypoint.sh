@@ -20,6 +20,16 @@ if [[ $STARTUP_DELAY ]]; then
   sleep $STARTUP_DELAY
 fi
 
+# Wait for network service
+if [[ ! -z $WAIT_FOR ]]; then
+  wait_for_args=" --timeout=$WAIT_FOR_SECONDS $WAIT_FOR -- echo \"done waiting for $WAIT_FOR\""
+  if [[ ! -z $WAIT_FOR_REQUIRED ]]; then
+    wait-for-it.sh --strict $wait_for_args
+  else
+    wait-for-it.sh $wait_for_args
+  fi
+fi
+
 if [ "${1:0:1}" = '-' ]; then
 	set -- node "$@"
 fi
