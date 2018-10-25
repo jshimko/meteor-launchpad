@@ -21,4 +21,4 @@ if [ -f $APP_SOURCE_DIR/launchpad.conf ]; then
   fi
 fi
 
-apt-get install -y --no-install-recommends curl bzip2 bsdtar build-essential python git gnupg gosu
+apt-get install -y --no-install-recommends curl bzip2 bsdtar build-essential python git gosu
