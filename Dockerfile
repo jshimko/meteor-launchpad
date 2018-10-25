@@ -1,5 +1,5 @@
-FROM debian:jessie
-MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
+FROM debian:stretch
+MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>, Sebastian Lutter <lutter@pixolution.de>
 
 RUN groupadd -r node && useradd -m -g node node
 
@@ -7,8 +7,8 @@ RUN groupadd -r node && useradd -m -g node node
 ENV GOSU_VERSION 1.10
 
 # MongoDB
-ENV MONGO_VERSION 3.4.10
-ENV MONGO_MAJOR 3.4
+ENV MONGO_VERSION 4.0.2
+ENV MONGO_MAJOR 4.0
 ENV MONGO_PACKAGE mongodb-org
 
 # PhantomJS
@@ -28,7 +28,7 @@ ONBUILD ARG APT_GET_INSTALL
 ONBUILD ENV APT_GET_INSTALL $APT_GET_INSTALL
 
 ONBUILD ARG NODE_VERSION
-ONBUILD ENV NODE_VERSION ${NODE_VERSION:-8.9.0}
+ONBUILD ENV NODE_VERSION ${NODE_VERSION:-8.11.4}
 
 ONBUILD ARG NPM_TOKEN
 ONBUILD ENV NPM_TOKEN $NPM_TOKEN
