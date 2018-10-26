@@ -2,7 +2,7 @@
 
 set -e
 
-IMAGE_NAME=${1:-"jshimko/meteor-launchpad"}
+IMAGE_NAME=${1:-"pixolution/meteor-launchpad"}
 
 printf "\n[-] Building $IMAGE_NAME...\n\n"
 

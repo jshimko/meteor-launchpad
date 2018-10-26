@@ -3,10 +3,10 @@
 set -e
 
 # Example usage:
-# deploy.sh jshimko/meteor-launchpad v1.0.0
+# deploy.sh pixolution/meteor-launchpad v2.3.1
 
-IMAGE_NAME=$1 # jshimko/meteor-launchpad
-VERSION=$2    # v1.0.0
+IMAGE_NAME=$1 # pixolution/meteor-launchpad
+VERSION=$2    # v2.3.1
 
 # create versioned tags
 docker tag $IMAGE_NAME:devbuild $IMAGE_NAME:$VERSION-devbuild
