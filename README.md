@@ -7,7 +7,7 @@ This version is just a fork of *jshimko/meteor-launchpad* with some updates to s
 Add the following to a `Dockerfile` in the root of your app:
 
 ```Dockerfile
-FROM pixolution/meteor-launchpad:v.2.3.1
+FROM pixolution/meteor-launchpad:v2.3.1
 ```
 
 Then you can build the image with:
