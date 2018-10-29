@@ -1,9 +1,10 @@
 
-## v2.3.1
+## current master
 
 - Updates for Meteor 1.8 support
 - Node 8.11.4
 - Mongo 4.0.2
+
 
 ## v2.3.0
 

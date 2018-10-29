@@ -5,6 +5,9 @@ RUN groupadd -r node && useradd -m -g node node
 
 ENV DEV_BUILD true
 
+# Gosu
+#ENV GOSU_VERSION 1.10
+
 # MongoDB
 ENV MONGO_VERSION 4.0.2
 ENV MONGO_MAJOR 4.0
