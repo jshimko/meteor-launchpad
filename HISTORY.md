@@ -1,10 +1,13 @@
 
-## current master
+## v2.3.2
+
+- ensure apt-get working with https mirrors via apt-transport-https
+
+## v2.3.1
 
 - Updates for Meteor 1.8 support
 - Node 8.11.4
 - Mongo 4.0.2
-
 
 ## v2.3.0
 
