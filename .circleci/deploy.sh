@@ -3,7 +3,7 @@
 ## Required environment variables in your CircleCI dashboard
 # (used to push to Docker Hub)
 #
-# $DOCKER_USERNAME  - Docker Hub username
+# $DOCKER_USERNAME  - Docker Hub username for docker
 # $DOCKER_PASS  - Docker Hub password
 # $DOCKER_EMAIL - Docker Hub email
 
