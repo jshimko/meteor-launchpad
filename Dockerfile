@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
+MAINTAINER Uchenna Okafor <uokafor@tradedepot.co>
 
 RUN groupadd -r node && useradd -m -g node node
 
