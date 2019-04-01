@@ -40,3 +40,6 @@ mv $BUILD_SCRIPTS_DIR/entrypoint.sh $APP_BUNDLE_DIR/bundle/entrypoint.sh
 
 # change ownership of the app to the node user
 chown -R node:node $APP_BUNDLE_DIR
+
+# Workaround with missing fiber binary.  Remove and re-install
+npm uninstall fibers && npm install fibers
