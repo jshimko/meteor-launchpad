@@ -11,6 +11,9 @@ else
   # download installer script
   curl -v https://install.meteor.com -o /tmp/install_meteor.sh
 
+  # convert potential Windows line endings to Unix line endings.
+  sed -i.bak 's/\r$//' $APP_SOURCE_DIR/.meteor/release
+
   # read in the release version in the app
   METEOR_VERSION=$(head $APP_SOURCE_DIR/.meteor/release | cut -d "@" -f 2)
 
