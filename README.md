@@ -91,6 +91,7 @@ If you prefer not to have a config file in your project, your other option is to
 ```sh
 docker build \
   --build-arg APT_GET_INSTALL="curl git wget" \
+  --build-arg PRE_INSTALL_SCRIPT="yourscript.sh" \
   --build-arg INSTALL_MONGO=true \
   --build-arg NODE_VERSION=8.9.0 \
   -t myorg/myapp:latest .
