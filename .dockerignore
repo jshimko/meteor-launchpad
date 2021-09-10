@@ -3,3 +3,4 @@
 build.sh
 deploy.sh
 *.md
+.idea
