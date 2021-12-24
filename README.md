@@ -23,6 +23,8 @@ There are several parts of a Meteor development environment that you don't need 
 .git
 .meteor/local
 node_modules
+packages/*/.git
+packages/*/.npm
 ```
 
 ### Run
@@ -55,7 +57,7 @@ docker run -d \
 
 ### Build Options
 
-Meteor Launchpad supports setting custom build options in one of two ways.  You can either create a launchpad.conf config file in the root of your app or you can use [Docker build args](https://docs.docker.com/engine/reference/builder/#arg).  The currently supported options are to install PhantomJS, GraphicsMagick, MongoDB, or any list of `apt-get` dependencies (Meteor Launchpad is built on `debian:jesse`).  
+Meteor Launchpad supports setting custom build options in one of two ways.  You can either create a launchpad.conf config file in the root of your app or you can use [Docker build args](https://docs.docker.com/engine/reference/builder/#arg).  The currently supported options are to install PhantomJS, GraphicsMagick, MongoDB, node-gyp, or any list of `apt-get` dependencies (Meteor Launchpad is built on `debian:jesse`).  
 
 If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo inside the container and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
 
@@ -82,6 +84,7 @@ NODE_VERSION=8.9.0
 INSTALL_MONGO=true
 INSTALL_PHANTOMJS=true
 INSTALL_GRAPHICSMAGICK=true
+INSTALL_NODEGYP=true
 ```
 
 **Option #2 - Docker Build Args**
@@ -102,6 +105,27 @@ You can provide your [NPM auth token](http://blog.npmjs.org/post/118393368555/de
 
 ```sh
 docker build --build-arg NPM_TOKEN="<your token>" -t myorg/myapp:latest .
+```
+
+## Installing Private Meteor Packages
+
+You can provide private Meteor packages by copying them to the [`packages/`](https://guide.meteor.com/writing-atmosphere-packages.html#local-packages) folder per the standard Meteor docs. Please note the recommended `.dockerignore` for Meteor Launchpad excludes the `packages/<package>/.npm` directory.
+
+```
+MeteorApp
+├──.meteor
+├──client
+├──server
+├──packages
+|  |--privatePackage1
+|  |  ├──.npm
+|  |  └─ <stuff>
+|  └--privatePackage2
+|     ├──.npm
+|     └─ <stuff>
+├── <etc>
+├──package.json
+└──launchpad.conf
 ```
 
 ## Development Builds

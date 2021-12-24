@@ -26,9 +26,7 @@ ENV BUILD_SCRIPTS_DIR /opt/build_scripts
 COPY scripts $BUILD_SCRIPTS_DIR
 RUN chmod -R 750 $BUILD_SCRIPTS_DIR
 
-# install base dependencies, build app, cleanup
-RUN bash $BUILD_SCRIPTS_DIR/install-deps.sh && \
-		bash $BUILD_SCRIPTS_DIR/post-install-cleanup.sh
+RUN bash $BUILD_SCRIPTS_DIR/install-deps.sh
 
 # define all --build-arg options
 ONBUILD ARG APT_GET_INSTALL
@@ -36,6 +34,12 @@ ONBUILD ENV APT_GET_INSTALL $APT_GET_INSTALL
 
 ONBUILD ARG NODE_VERSION
 ONBUILD ENV NODE_VERSION ${NODE_VERSION:-14.17.4}
+
+ONBUILD ARG INSTALL_NODEGYP
+ONBUILD ENV INSTALL_NODEGYP $INSTALL_NODEGYP
+
+ONBUILD ARG NPM_TOKEN
+ONBUILD ENV NPM_TOKEN $NPM_TOKEN
 
 ONBUILD ARG INSTALL_MONGO
 ONBUILD ENV INSTALL_MONGO ${INSTALL_MONGO:-true}
@@ -46,21 +50,25 @@ ONBUILD ENV INSTALL_PHANTOMJS ${INSTALL_PHANTOMJS:-true}
 ONBUILD ARG INSTALL_GRAPHICSMAGICK
 ONBUILD ENV INSTALL_GRAPHICSMAGICK ${INSTALL_GRAPHICSMAGICK:-true}
 
-# optionally custom apt dependencies at app build time
-ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y $APT_GET_INSTALL; fi
-
-# optionally install Mongo or Phantom at app build time
-ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-phantom.sh
-ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-mongo.sh
-ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh
-
 # Node flags for the Meteor build tool
 ONBUILD ARG TOOL_NODE_FLAGS
 ONBUILD ENV TOOL_NODE_FLAGS $TOOL_NODE_FLAGS
 
-ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-node.sh
-ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-meteor.sh
+# optionally custom apt dependencies at app build time
+ONBUILD RUN if [ "$APT_GET_INSTALL" ]; then apt-get update && apt-get install -y $APT_GET_INSTALL; fi
+
+# copy the app to the container
 ONBUILD COPY . $APP_SOURCE_DIR
+WORKDIR $APP_SOURCE_DIR
+
+# install base dependencies, build app, cleanup
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-deps.sh
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-node.sh
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-nodegyp.sh
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-phantom.sh
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-mongo.sh
+ONBUILD RUN bash $BUILD_SCRIPTS_DIR/install-meteor.sh
 ONBUILD RUN bash $BUILD_SCRIPTS_DIR/build-meteor.sh
 
 # Default values for Meteor environment variables
