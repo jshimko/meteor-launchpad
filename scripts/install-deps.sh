@@ -29,6 +29,7 @@ dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
 
 wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"
 wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"
+wget -O /usr/local/bin/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
 
 export GNUPGHOME="$(mktemp -d)"
 
@@ -37,8 +38,9 @@ export GNUPGHOME="$(mktemp -d)"
 
 rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc
 
-chmod +x /usr/local/bin/gosu
+chmod +x /usr/local/bin/gosu /usr/local/bin/wait-for-it.sh
 
 gosu nobody true
 
 apt-get purge -y --auto-remove wget
+
