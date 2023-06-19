@@ -159,7 +159,7 @@ docker-compose up -d
 
 ## Custom Builds of Meteor Launchpad
 
-If you'd like to create a custom build for some reason, you can use the `build.sh` script in the root of the project to run all of the necessary commands.
+If you'd like to create a custom build for some reason, you can use the `build.sh` script in the root of the project to run all the necessary commands.
 
 First, make any changes you want, then to create your custom build:
 

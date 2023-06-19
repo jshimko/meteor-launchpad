@@ -20,7 +20,7 @@ if [ -f $APP_SOURCE_DIR/launchpad.conf ]; then
   fi
 fi
 
-apt-get install -y --no-install-recommends curl bzip2 libarchive-tools build-essential python git wget  gnupg2 dirmngr
+apt-get install -y --no-install-recommends curl bzip2 libarchive-tools build-essential  git wget  gnupg2 dirmngr
 
 
 # install gosu
