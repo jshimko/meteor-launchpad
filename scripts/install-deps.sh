@@ -39,7 +39,7 @@ apt-get install -y conda
 
 source /opt/conda/etc/profile.d/conda.sh
 
-conda create --name py2 python=2.7
+conda create --name py2 python=2.7 -y
 conda activate py2
 # install gosu
 
