@@ -21,9 +21,13 @@ export METEOR_ALLOW_SUPERUSER=true
 
 cd $APP_SOURCE_DIR
 
+printf "\n[-] Activate conda in app directory...\n\n"
+source /opt/conda/etc/profile.d/conda.sh
+conda activate py2
+
 # Install app deps
 printf "\n[-] Running npm install in app directory...\n\n"
-meteor npm install
+meteor npm ci
 
 # build the bundle
 printf "\n[-] Building Meteor application...\n\n"
