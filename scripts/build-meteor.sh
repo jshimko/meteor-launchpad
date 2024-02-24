@@ -23,7 +23,7 @@ cd $APP_SOURCE_DIR
 
 printf "\n[-] Activate conda in app directory...\n\n"
 source /opt/conda/etc/profile.d/conda.sh
-conda activate py2
+conda activate py
 
 # Install app deps
 printf "\n[-] Running npm install in app directory...\n\n"

@@ -39,8 +39,8 @@ apt-get install -y conda
 
 source /opt/conda/etc/profile.d/conda.sh
 
-conda create --name py2 python=2.7 -y
-conda activate py2
+conda create --name py python=${PYTHON_VERSION} -y
+conda activate py
 # install gosu
 
 dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
