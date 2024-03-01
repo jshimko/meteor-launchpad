@@ -23,9 +23,7 @@ cd $APP_SOURCE_DIR
 
 printf "\n[-] Activate conda in app directory...\n\n"
 
-printf "1"
 source /opt/conda/etc/profile.d/conda.sh
-printf "2"
 
 NODE_VERSION=$(node -v | cut -c2-)
 
@@ -40,7 +38,6 @@ fi
 echo "\PYTHON_VERSION: ${PYTHON_VERSION}\n\n"
 
 conda create --name py python=${PYTHON_VERSION} -y
-printf "3"
 conda activate py
 
 echo "\n[-] Check python version on build...\n\n"
