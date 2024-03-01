@@ -22,17 +22,25 @@ export METEOR_ALLOW_SUPERUSER=true
 cd $APP_SOURCE_DIR
 
 printf "\n[-] Activate conda in app directory...\n\n"
+
+printf "1"
 source /opt/conda/etc/profile.d/conda.sh
+printf "2"
 
 NODE_VERSION=$(node -v | cut -c2-)
 
-if [[ "$(echo "$NODE_VERSION" | cut -d'.' -f1)" -ge 14 ]]; then
+echo "\nNODE_VERSION: ${NODE_VERSION}\n\n"
+
+if [[ "$(echo "$NODE_VERSION" | cut -d'.' -f1)" -gt 14 ]]; then
   PYTHON_VERSION=3.12.2
 else
   PYTHON_VERSION=2.7.18
 fi
 
+echo "\PYTHON_VERSION: ${PYTHON_VERSION}\n\n"
+
 conda create --name py python=${PYTHON_VERSION} -y
+printf "3"
 conda activate py
 
 echo "\n[-] Check python version on build...\n\n"
