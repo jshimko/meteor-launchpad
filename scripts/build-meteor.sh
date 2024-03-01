@@ -23,7 +23,20 @@ cd $APP_SOURCE_DIR
 
 printf "\n[-] Activate conda in app directory...\n\n"
 source /opt/conda/etc/profile.d/conda.sh
+
+NODE_VERSION=$(node -v | cut -c2-)
+
+if [[ "$(echo "$NODE_VERSION" | cut -d'.' -f1)" -ge 14 ]]; then
+  PYTHON_VERSION=3.12.2
+else
+  PYTHON_VERSION=2.7.18
+fi
+
+conda create --name py python=${PYTHON_VERSION} -y
 conda activate py
+
+echo "\n[-] Check python version on build...\n\n"
+echo `python --version`
 
 # Install app deps
 printf "\n[-] Running npm install in app directory...\n\n"

@@ -37,12 +37,6 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/conda-archive-keyring.gpg] h
 apt-get update
 apt-get install -y conda
 
-source /opt/conda/etc/profile.d/conda.sh
-
-conda create --name py python=${PYTHON_VERSION} -y
-conda activate py
-# install gosu
-
 dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
 
 wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"

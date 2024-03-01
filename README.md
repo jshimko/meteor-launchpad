@@ -86,11 +86,6 @@ INSTALL_PHANTOMJS=true
 INSTALL_GRAPHICSMAGICK=true
 ```
 
-For Meteor 2 add
-
-```dotenv
-PYTHON_VERSION=2.7
-```
 
 **Option #2 - Docker Build Args**
 
