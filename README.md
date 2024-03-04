@@ -1,6 +1,8 @@
 [![Circle CI](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master.svg?style=svg)](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master)
 # Meteor Launchpad - Base Docker Image for Meteor Apps
 
+Works for Meteor 2 and 3.
+
 ### Build
 
 Add the following to a `Dockerfile` in the root of your app:
@@ -67,7 +69,7 @@ Here are examples of both methods of setting custom options for your build:
 
 To use any of them, create a `launchpad.conf` in the root of your app and add any of the following values.
 
-```sh
+```dotenv
 # launchpad.conf
 
 # Use apt-get to install any additional dependencies
@@ -75,14 +77,15 @@ To use any of them, create a `launchpad.conf` in the root of your app and add an
 # (default: undefined)
 APT_GET_INSTALL="curl git wget"
 
-# Install a custom Node version (default: latest 8.x)
-NODE_VERSION=8.9.0
+# Install a custom Node version (default: latest 20.x)
+NODE_VERSION=20.10.0
 
 # Installs the latest version of each (default: all false)
 INSTALL_MONGO=true
 INSTALL_PHANTOMJS=true
 INSTALL_GRAPHICSMAGICK=true
 ```
+
 
 **Option #2 - Docker Build Args**
 
@@ -159,7 +162,7 @@ docker-compose up -d
 
 ## Custom Builds of Meteor Launchpad
 
-If you'd like to create a custom build for some reason, you can use the `build.sh` script in the root of the project to run all of the necessary commands.
+If you'd like to create a custom build for some reason, you can use the `build.sh` script in the root of the project to run all the necessary commands.
 
 First, make any changes you want, then to create your custom build:
 
